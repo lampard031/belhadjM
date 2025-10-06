@@ -52,6 +52,12 @@ GET /api/admin/stats - Estatísticas do dashboard
 - Preços em EUR, quilometragem, especificações portuguesas
 - Dados realistas para FTC Automóveis em Arcozelo
 
+### Jet-Skis (mockJetSkis)
+- 4 jet-skis com marcas como Yamaha, Sea-Doo, Kawasaki
+- Cada jet-ski tem: id, brand, year, model, hours, price, images, engine, passengers, fuel, color, description, featured, type
+- Especificações aquáticas: horas de uso, motor, capacidade de passageiros
+- Preços competitivos no mercado português de jet-skis
+
 ### Taxas de Financiamento (financingRates)
 - **Carros Novos**: TAN 7.25%, TAEG 9.1%, prazo 24-120 meses
 - **Carros Usados**: TAN 8.5%, TAEG 10.2%, prazo 24-96 meses
