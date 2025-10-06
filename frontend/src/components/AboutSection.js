@@ -50,14 +50,14 @@ const AboutSection = () => {
             
             <div className="space-y-4 text-gray-300 leading-relaxed">
               <p>
-                Bem-vindos ao novo site da Autos Portugal. Aqui, temos muito orgulho em oferecer 
+                Bem-vindos ao novo site da FTC Automóveis. Aqui, temos muito orgulho em oferecer 
                 veículos usados de qualidade, a preços competitivos. Todo o nosso pessoal qualificado está 
                 ansioso por oferecer um serviço de qualidade irrepreensível no âmbito de uma transação 
                 transparente e sem qualquer pressão.
               </p>
               
               <p>
-                Na Autos Portugal, temos como mandato servir a clientela da região de Lisboa e 
+                Na FTC Automóveis, temos como mandato servir a clientela da região de Arcozelo e 
                 arredores de forma a que o vosso nível de satisfação seja à altura da nossa 
                 reputação. Estamos no negócio há muito tempo e esperamos encontrar-vos em breve. 
                 Somos também especialistas em financiamento e recuperação de crédito em todos 
@@ -65,7 +65,7 @@ const AboutSection = () => {
               </p>
               
               <p className="font-medium">
-                Toda a equipa da Autos Portugal
+                Toda a equipa da FTC Automóveis
               </p>
             </div>
           </div>
