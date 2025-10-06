@@ -22,7 +22,7 @@ const HeroSection = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
               VIVA A<br />
               <span className="text-white">EXPERIÊNCIA SUPERIOR</span><br />
-              <span className="text-white">COM AUTOS PORTUGAL</span>
+              <span className="text-white">COM FTC AUTOMÓVEIS</span>
             </h1>
             <p className="text-xl text-white mb-8 font-medium">
               1ª, 2ª, 3ª oportunidade de crédito!
