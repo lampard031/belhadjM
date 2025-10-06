@@ -44,7 +44,7 @@ const AboutSection = () => {
             <div>
               <h3 className="text-xl font-bold mb-4">À procura de um veículo?</h3>
               <h2 className="text-3xl font-bold mb-6">
-                Bem-vindo à Autos Portugal em Lisboa
+                Bem-vindo à FTC Automóveis em Arcozelo
               </h2>
             </div>
             
