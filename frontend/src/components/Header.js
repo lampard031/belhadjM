@@ -12,7 +12,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <div className="border-2 border-white rounded-lg px-6 py-2 bg-transparent hover:bg-white hover:text-gray-900 transition-all duration-300">
-              <h1 className="text-xl font-bold tracking-wider">AUTOS PORTUGAL</h1>
+              <h1 className="text-xl font-bold tracking-wider">FTC AUTOMÓVEIS</h1>
             </div>
           </Link>
 
