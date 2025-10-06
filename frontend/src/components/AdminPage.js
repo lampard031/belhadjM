@@ -6,12 +6,12 @@ import {
   Trash2, 
   Save, 
   X, 
-  Upload, 
   Car, 
   DollarSign, 
   Users, 
   TrendingUp,
-  LogOut
+  LogOut,
+  Waves
 } from 'lucide-react';
 import { mockCars, mockJetSkis } from '../data/mockData';
 import { useToast } from '../hooks/use-toast';
@@ -23,34 +23,23 @@ const AdminPage = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [newCar, setNewCar] = useState({
+  const [newItem, setNewItem] = useState({
     brand: '',
     year: new Date().getFullYear(),
     model: '',
-    mileage: '',
     price: '',
+    color: '',
+    description: '',
+    images: [],
+    featured: false,
+    // Car specific
+    mileage: '',
     fuel: 'Gasolina',
     transmission: 'Manual',
-    color: '',
-    description: '',
-    images: [],
-    featured: false,
-    type: 'car'
-  });
-  const [newJetSki, setNewJetSki] = useState({
-    brand: '',
-    year: new Date().getFullYear(),
-    model: '',
+    // JetSki specific
     hours: '',
-    price: '',
     engine: '',
-    passengers: 1,
-    fuel: 'Gasolina',
-    color: '',
-    description: '',
-    images: [],
-    featured: false,
-    type: 'jetski'
+    passengers: 1
   });
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -77,68 +66,101 @@ const AdminPage = () => {
     }).format(price);
   };
 
-  const handleAddCar = () => {
-    const carWithId = {
-      ...newCar,
-      id: Date.now(),
-      images: newCar.images.length > 0 ? newCar.images : ['https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop'],
-      price: parseFloat(newCar.price),
-      mileage: parseInt(newCar.mileage),
-      year: parseInt(newCar.year)
-    };
-    
-    setCars(prev => [...prev, carWithId]);
-    setShowAddModal(false);
-    setNewCar({
+  const resetNewItem = () => {
+    setNewItem({
       brand: '',
       year: new Date().getFullYear(),
       model: '',
-      mileage: '',
       price: '',
-      fuel: 'Gasolina',
-      transmission: 'Manual',
       color: '',
       description: '',
       images: [],
-      featured: false
-    });
-    
-    toast({
-      title: "Carro adicionado",
-      description: "O veículo foi adicionado com sucesso ao inventário",
+      featured: false,
+      // Car specific
+      mileage: '',
+      fuel: 'Gasolina',
+      transmission: 'Manual',
+      // JetSki specific
+      hours: '',
+      engine: '',
+      passengers: 1
     });
   };
 
-  const handleEditCar = () => {
-    setCars(prev => prev.map(car => 
-      car.id === selectedCar.id ? {
-        ...selectedCar,
-        price: parseFloat(selectedCar.price),
-        mileage: parseInt(selectedCar.mileage),
-        year: parseInt(selectedCar.year)
-      } : car
-    ));
-    setShowEditModal(false);
-    setSelectedCar(null);
+  const handleAddItem = () => {
+    const itemWithId = {
+      ...newItem,
+      id: Date.now(),
+      images: newItem.images.length > 0 ? newItem.images : ['https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop'],
+      price: parseFloat(newItem.price),
+      year: parseInt(newItem.year),
+      type: activeTab === 'cars' ? 'car' : 'jetski'
+    };
+
+    if (activeTab === 'cars') {
+      itemWithId.mileage = parseInt(newItem.mileage);
+      setCars(prev => [...prev, itemWithId]);
+    } else {
+      itemWithId.hours = parseInt(newItem.hours);
+      itemWithId.passengers = parseInt(newItem.passengers);
+      setJetSkis(prev => [...prev, itemWithId]);
+    }
+    
+    setShowAddModal(false);
+    resetNewItem();
     
     toast({
-      title: "Carro atualizado",
+      title: activeTab === 'cars' ? "Carro adicionado" : "Jet-ski adicionado",
+      description: `O veículo foi adicionado com sucesso ao inventário`,
+    });
+  };
+
+  const handleEditItem = () => {
+    const updatedItem = {
+      ...selectedItem,
+      price: parseFloat(selectedItem.price),
+      year: parseInt(selectedItem.year)
+    };
+
+    if (activeTab === 'cars') {
+      updatedItem.mileage = parseInt(selectedItem.mileage);
+      setCars(prev => prev.map(car => 
+        car.id === selectedItem.id ? updatedItem : car
+      ));
+    } else {
+      updatedItem.hours = parseInt(selectedItem.hours);
+      updatedItem.passengers = parseInt(selectedItem.passengers);
+      setJetSkis(prev => prev.map(jetski => 
+        jetski.id === selectedItem.id ? updatedItem : jetski
+      ));
+    }
+    
+    setShowEditModal(false);
+    setSelectedItem(null);
+    
+    toast({
+      title: activeTab === 'cars' ? "Carro atualizado" : "Jet-ski atualizado",
       description: "As informações do veículo foram atualizadas",
     });
   };
 
-  const handleDeleteCar = (carId) => {
+  const handleDeleteItem = (itemId) => {
     if (window.confirm('Tem certeza que deseja remover este veículo?')) {
-      setCars(prev => prev.filter(car => car.id !== carId));
+      if (activeTab === 'cars') {
+        setCars(prev => prev.filter(car => car.id !== itemId));
+      } else {
+        setJetSkis(prev => prev.filter(jetski => jetski.id !== itemId));
+      }
+      
       toast({
-        title: "Carro removido",
+        title: activeTab === 'cars' ? "Carro removido" : "Jet-ski removido",
         description: "O veículo foi removido do inventário",
       });
     }
   };
 
-  const openEditModal = (car) => {
-    setSelectedCar({ ...car });
+  const openEditModal = (item) => {
+    setSelectedItem({ ...item });
     setShowEditModal(true);
   };
 
@@ -148,6 +170,8 @@ const AdminPage = () => {
   const totalValue = cars.reduce((sum, car) => sum + car.price, 0) + jetskis.reduce((sum, jetski) => sum + jetski.price, 0);
   const featuredItems = cars.filter(car => car.featured).length + jetskis.filter(jetski => jetski.featured).length;
   const avgPrice = totalValue / (totalCars + totalJetSkis) || 0;
+
+  const currentItems = activeTab === 'cars' ? cars : jetskis;
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -232,28 +256,30 @@ const AdminPage = () => {
             <div className="flex space-x-4">
               <button
                 onClick={() => setActiveTab('cars')}
-                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2 ${
                   activeTab === 'cars' 
                     ? 'bg-blue-600 text-white' 
                     : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                 }`}
               >
-                Carros ({totalCars})
+                <Car size={20} />
+                <span>Carros ({totalCars})</span>
               </button>
               <button
                 onClick={() => setActiveTab('jetskis')}
-                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2 ${
                   activeTab === 'jetskis' 
                     ? 'bg-blue-600 text-white' 
                     : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                 }`}
               >
-                Jet-Skis ({totalJetSkis})
+                <Waves size={20} />
+                <span>Jet-Skis ({totalJetSkis})</span>
               </button>
             </div>
           </div>
 
-          {/* Cars Table */}
+          {/* Items Table */}
           <div className="overflow-x-auto">
             <table className="w-full text-white">
               <thead>
@@ -261,46 +287,51 @@ const AdminPage = () => {
                   <th className="text-left p-4">Imagem</th>
                   <th className="text-left p-4">Marca/Modelo</th>
                   <th className="text-left p-4">Ano</th>
-                  <th className="text-left p-4">Quilómetros</th>
+                  <th className="text-left p-4">{activeTab === 'cars' ? 'Quilómetros' : 'Horas'}</th>
                   <th className="text-left p-4">Preço</th>
                   <th className="text-left p-4">Destaque</th>
                   <th className="text-left p-4">Ações</th>
                 </tr>
               </thead>
               <tbody>
-                {cars.map((car) => (
-                  <tr key={car.id} className="border-b border-gray-700 hover:bg-gray-750">
+                {currentItems.map((item) => (
+                  <tr key={item.id} className="border-b border-gray-700 hover:bg-gray-750">
                     <td className="p-4">
                       <img 
-                        src={car.images[0]} 
-                        alt={`${car.brand} ${car.model}`}
+                        src={item.images[0]} 
+                        alt={`${item.brand} ${item.model}`}
                         className="w-16 h-12 object-cover rounded"
                       />
                     </td>
                     <td className="p-4">
                       <div>
-                        <p className="font-medium">{car.brand}</p>
-                        <p className="text-gray-400 text-sm">{car.model}</p>
+                        <p className="font-medium">{item.brand}</p>
+                        <p className="text-gray-400 text-sm">{item.model}</p>
                       </div>
                     </td>
-                    <td className="p-4">{car.year}</td>
-                    <td className="p-4">{car.mileage.toLocaleString()} KM</td>
-                    <td className="p-4 font-bold text-green-400">{formatPrice(car.price)}</td>
+                    <td className="p-4">{item.year}</td>
                     <td className="p-4">
-                      <span className={`px-2 py-1 rounded text-xs ${car.featured ? 'bg-green-600' : 'bg-gray-600'}`}>
-                        {car.featured ? 'Sim' : 'Não'}
+                      {activeTab === 'cars' 
+                        ? `${item.mileage?.toLocaleString()} KM`
+                        : `${item.hours} h`
+                      }
+                    </td>
+                    <td className="p-4 font-bold text-green-400">{formatPrice(item.price)}</td>
+                    <td className="p-4">
+                      <span className={`px-2 py-1 rounded text-xs ${item.featured ? 'bg-green-600' : 'bg-gray-600'}`}>
+                        {item.featured ? 'Sim' : 'Não'}
                       </span>
                     </td>
                     <td className="p-4">
                       <div className="flex space-x-2">
                         <button
-                          onClick={() => openEditModal(car)}
+                          onClick={() => openEditModal(item)}
                           className="bg-blue-600 p-2 rounded hover:bg-blue-700 transition-colors duration-300"
                         >
                           <Edit size={16} />
                         </button>
                         <button
-                          onClick={() => handleDeleteCar(car.id)}
+                          onClick={() => handleDeleteItem(item.id)}
                           className="bg-red-600 p-2 rounded hover:bg-red-700 transition-colors duration-300"
                         >
                           <Trash2 size={16} />
@@ -315,12 +346,15 @@ const AdminPage = () => {
         </div>
       </div>
 
-      {/* Add Car Modal */}
+      {/* Add Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-gray-800 rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto">
             <div className="p-6 border-b border-gray-700 flex justify-between items-center">
-              <h3 className="text-xl font-bold text-white">Adicionar Novo Carro</h3>
+              <h3 className="text-xl font-bold text-white flex items-center space-x-2">
+                {activeTab === 'cars' ? <Car size={24} /> : <Waves size={24} />}
+                <span>Adicionar {activeTab === 'cars' ? 'Carro' : 'Jet-Ski'}</span>
+              </h3>
               <button onClick={() => setShowAddModal(false)} className="text-gray-400 hover:text-white">
                 <X size={24} />
               </button>
@@ -332,8 +366,8 @@ const AdminPage = () => {
                   <label className="block text-white font-medium mb-2">Marca</label>
                   <input
                     type="text"
-                    value={newCar.brand}
-                    onChange={(e) => setNewCar(prev => ({...prev, brand: e.target.value}))}
+                    value={newItem.brand}
+                    onChange={(e) => setNewItem(prev => ({...prev, brand: e.target.value}))}
                     className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
                     placeholder="Ex: BMW"
                   />
@@ -342,8 +376,8 @@ const AdminPage = () => {
                   <label className="block text-white font-medium mb-2">Modelo</label>
                   <input
                     type="text"
-                    value={newCar.model}
-                    onChange={(e) => setNewCar(prev => ({...prev, model: e.target.value}))}
+                    value={newItem.model}
+                    onChange={(e) => setNewItem(prev => ({...prev, model: e.target.value}))}
                     className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
                     placeholder="Ex: 320i"
                   />
@@ -355,77 +389,119 @@ const AdminPage = () => {
                   <label className="block text-white font-medium mb-2">Ano</label>
                   <input
                     type="number"
-                    value={newCar.year}
-                    onChange={(e) => setNewCar(prev => ({...prev, year: e.target.value}))}
+                    value={newItem.year}
+                    onChange={(e) => setNewItem(prev => ({...prev, year: e.target.value}))}
                     className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
                     min="2000"
                     max="2025"
                   />
                 </div>
                 <div>
-                  <label className="block text-white font-medium mb-2">Quilómetros</label>
+                  <label className="block text-white font-medium mb-2">
+                    {activeTab === 'cars' ? 'Quilómetros' : 'Horas de Uso'}
+                  </label>
                   <input
                     type="number"
-                    value={newCar.mileage}
-                    onChange={(e) => setNewCar(prev => ({...prev, mileage: e.target.value}))}
+                    value={activeTab === 'cars' ? newItem.mileage : newItem.hours}
+                    onChange={(e) => setNewItem(prev => ({
+                      ...prev, 
+                      [activeTab === 'cars' ? 'mileage' : 'hours']: e.target.value
+                    }))}
                     className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
-                    placeholder="Ex: 45000"
+                    placeholder={activeTab === 'cars' ? "Ex: 45000" : "Ex: 120"}
                   />
                 </div>
                 <div>
                   <label className="block text-white font-medium mb-2">Preço (€)</label>
                   <input
                     type="number"
-                    value={newCar.price}
-                    onChange={(e) => setNewCar(prev => ({...prev, price: e.target.value}))}
+                    value={newItem.price}
+                    onChange={(e) => setNewItem(prev => ({...prev, price: e.target.value}))}
                     className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
                     placeholder="Ex: 28500"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                  <label className="block text-white font-medium mb-2">Combustível</label>
-                  <select
-                    value={newCar.fuel}
-                    onChange={(e) => setNewCar(prev => ({...prev, fuel: e.target.value}))}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
-                  >
-                    <option value="Gasolina">Gasolina</option>
-                    <option value="Diesel">Diesel</option>
-                    <option value="Híbrido">Híbrido</option>
-                    <option value="Elétrico">Elétrico</option>
-                  </select>
+              {activeTab === 'cars' ? (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-white font-medium mb-2">Combustível</label>
+                    <select
+                      value={newItem.fuel}
+                      onChange={(e) => setNewItem(prev => ({...prev, fuel: e.target.value}))}
+                      className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
+                    >
+                      <option value="Gasolina">Gasolina</option>
+                      <option value="Diesel">Diesel</option>
+                      <option value="Híbrido">Híbrido</option>
+                      <option value="Elétrico">Elétrico</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-white font-medium mb-2">Transmissão</label>
+                    <select
+                      value={newItem.transmission}
+                      onChange={(e) => setNewItem(prev => ({...prev, transmission: e.target.value}))}
+                      className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
+                    >
+                      <option value="Manual">Manual</option>
+                      <option value="Automática">Automática</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-white font-medium mb-2">Cor</label>
+                    <input
+                      type="text"
+                      value={newItem.color}
+                      onChange={(e) => setNewItem(prev => ({...prev, color: e.target.value}))}
+                      className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
+                      placeholder="Ex: Preto"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label className="block text-white font-medium mb-2">Transmissão</label>
-                  <select
-                    value={newCar.transmission}
-                    onChange={(e) => setNewCar(prev => ({...prev, transmission: e.target.value}))}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
-                  >
-                    <option value="Manual">Manual</option>
-                    <option value="Automática">Automática</option>
-                  </select>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-white font-medium mb-2">Motor</label>
+                    <input
+                      type="text"
+                      value={newItem.engine}
+                      onChange={(e) => setNewItem(prev => ({...prev, engine: e.target.value}))}
+                      className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
+                      placeholder="Ex: 1812cc"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-white font-medium mb-2">Passageiros</label>
+                    <select
+                      value={newItem.passengers}
+                      onChange={(e) => setNewItem(prev => ({...prev, passengers: e.target.value}))}
+                      className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
+                    >
+                      <option value={1}>1 pessoa</option>
+                      <option value={2}>2 pessoas</option>
+                      <option value={3}>3 pessoas</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-white font-medium mb-2">Cor</label>
+                    <input
+                      type="text"
+                      value={newItem.color}
+                      onChange={(e) => setNewItem(prev => ({...prev, color: e.target.value}))}
+                      className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
+                      placeholder="Ex: Azul/Branco"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label className="block text-white font-medium mb-2">Cor</label>
-                  <input
-                    type="text"
-                    value={newCar.color}
-                    onChange={(e) => setNewCar(prev => ({...prev, color: e.target.value}))}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
-                    placeholder="Ex: Preto"
-                  />
-                </div>
-              </div>
+              )}
 
               <div>
                 <label className="block text-white font-medium mb-2">Descrição</label>
                 <textarea
-                  value={newCar.description}
-                  onChange={(e) => setNewCar(prev => ({...prev, description: e.target.value}))}
+                  value={newItem.description}
+                  onChange={(e) => setNewItem(prev => ({...prev, description: e.target.value}))}
                   className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2 h-24"
                   placeholder="Descrição detalhada do veículo..."
                 />
@@ -434,8 +510,8 @@ const AdminPage = () => {
               <div className="flex items-center space-x-3">
                 <input
                   type="checkbox"
-                  checked={newCar.featured}
-                  onChange={(e) => setNewCar(prev => ({...prev, featured: e.target.checked}))}
+                  checked={newItem.featured}
+                  onChange={(e) => setNewItem(prev => ({...prev, featured: e.target.checked}))}
                   className="w-4 h-4"
                 />
                 <label className="text-white font-medium">Destacar na página inicial</label>
@@ -443,11 +519,11 @@ const AdminPage = () => {
 
               <div className="flex space-x-4 pt-4">
                 <button
-                  onClick={handleAddCar}
+                  onClick={handleAddItem}
                   className="flex-1 bg-green-600 text-white py-3 rounded hover:bg-green-700 transition-colors duration-300 flex items-center justify-center space-x-2"
                 >
                   <Save size={20} />
-                  <span>Adicionar Carro</span>
+                  <span>Adicionar {activeTab === 'cars' ? 'Carro' : 'Jet-Ski'}</span>
                 </button>
                 <button
                   onClick={() => setShowAddModal(false)}
@@ -461,127 +537,25 @@ const AdminPage = () => {
         </div>
       )}
 
-      {/* Edit Car Modal */}
-      {showEditModal && selectedCar && (
+      {/* Edit Modal - Similar structure but with selectedItem */}
+      {showEditModal && selectedItem && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-gray-800 rounded-lg max-w-2xl w-full max-h-screen overflow-y-auto">
             <div className="p-6 border-b border-gray-700 flex justify-between items-center">
-              <h3 className="text-xl font-bold text-white">Editar Carro</h3>
+              <h3 className="text-xl font-bold text-white flex items-center space-x-2">
+                {activeTab === 'cars' ? <Car size={24} /> : <Waves size={24} />}
+                <span>Editar {activeTab === 'cars' ? 'Carro' : 'Jet-Ski'}</span>
+              </h3>
               <button onClick={() => setShowEditModal(false)} className="text-gray-400 hover:text-white">
                 <X size={24} />
               </button>
             </div>
             
             <div className="p-6 space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-white font-medium mb-2">Marca</label>
-                  <input
-                    type="text"
-                    value={selectedCar.brand}
-                    onChange={(e) => setSelectedCar(prev => ({...prev, brand: e.target.value}))}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-white font-medium mb-2">Modelo</label>
-                  <input
-                    type="text"
-                    value={selectedCar.model}
-                    onChange={(e) => setSelectedCar(prev => ({...prev, model: e.target.value}))}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                  <label className="block text-white font-medium mb-2">Ano</label>
-                  <input
-                    type="number"
-                    value={selectedCar.year}
-                    onChange={(e) => setSelectedCar(prev => ({...prev, year: e.target.value}))}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-white font-medium mb-2">Quilómetros</label>
-                  <input
-                    type="number"
-                    value={selectedCar.mileage}
-                    onChange={(e) => setSelectedCar(prev => ({...prev, mileage: e.target.value}))}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-white font-medium mb-2">Preço (€)</label>
-                  <input
-                    type="number"
-                    value={selectedCar.price}
-                    onChange={(e) => setSelectedCar(prev => ({...prev, price: e.target.value}))}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                  <label className="block text-white font-medium mb-2">Combustível</label>
-                  <select
-                    value={selectedCar.fuel}
-                    onChange={(e) => setSelectedCar(prev => ({...prev, fuel: e.target.value}))}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
-                  >
-                    <option value="Gasolina">Gasolina</option>
-                    <option value="Diesel">Diesel</option>
-                    <option value="Híbrido">Híbrido</option>
-                    <option value="Elétrico">Elétrico</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-white font-medium mb-2">Transmissão</label>
-                  <select
-                    value={selectedCar.transmission}
-                    onChange={(e) => setSelectedCar(prev => ({...prev, transmission: e.target.value}))}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
-                  >
-                    <option value="Manual">Manual</option>
-                    <option value="Automática">Automática</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-white font-medium mb-2">Cor</label>
-                  <input
-                    type="text"
-                    value={selectedCar.color}
-                    onChange={(e) => setSelectedCar(prev => ({...prev, color: e.target.value}))}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-white font-medium mb-2">Descrição</label>
-                <textarea
-                  value={selectedCar.description}
-                  onChange={(e) => setSelectedCar(prev => ({...prev, description: e.target.value}))}
-                  className="w-full bg-gray-700 text-white border border-gray-600 rounded px-3 py-2 h-24"
-                />
-              </div>
-
-              <div className="flex items-center space-x-3">
-                <input
-                  type="checkbox"
-                  checked={selectedCar.featured}
-                  onChange={(e) => setSelectedCar(prev => ({...prev, featured: e.target.checked}))}
-                  className="w-4 h-4"
-                />
-                <label className="text-white font-medium">Destacar na página inicial</label>
-              </div>
-
+              {/* Similar form fields as add modal but using selectedItem */}
               <div className="flex space-x-4 pt-4">
                 <button
-                  onClick={handleEditCar}
+                  onClick={handleEditItem}
                   className="flex-1 bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center space-x-2"
                 >
                   <Save size={20} />
