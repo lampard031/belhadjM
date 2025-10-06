@@ -66,6 +66,7 @@ const Footer = () => {
             <h4 className="text-xl font-bold mb-6">Serviços</h4>
             <ul className="space-y-3 text-gray-400">
               <li>Venda de Carros Usados</li>
+              <li>Venda de Jet-Skis</li>
               <li>Financiamento Automóvel</li>
               <li>Recuperação de Crédito</li>
               <li>Avaliação Gratuita</li>
