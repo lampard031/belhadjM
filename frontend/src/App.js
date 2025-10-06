@@ -6,6 +6,8 @@ import { Toaster } from "./components/ui/toaster";
 import HomePage from "./components/HomePage";
 import InventoryPage from "./components/InventoryPage";
 import CarDetailPage from "./components/CarDetailPage";
+import JetSkisPage from "./components/JetSkisPage";
+import JetSkiDetailPage from "./components/JetSkiDetailPage";
 import FinancingPage from "./components/FinancingPage";
 import AdminPage from "./components/AdminPage";
 import AdminLogin from "./components/AdminLogin";
