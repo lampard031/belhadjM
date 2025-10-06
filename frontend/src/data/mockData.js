@@ -148,3 +148,85 @@ export const mockYears = [];
 for (let year = 2024; year >= 2010; year--) {
   mockYears.push(year);
 }
+
+// Mock data for Jet-Skis
+export const mockJetSkis = [
+  {
+    id: 1,
+    brand: "Yamaha",
+    year: 2023,
+    model: "VX Cruiser HO",
+    hours: 45,
+    price: 18500,
+    images: [
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop"
+    ],
+    engine: "1812cc",
+    passengers: 3,
+    fuel: "Gasolina",
+    color: "Azul/Branco",
+    description: "Yamaha VX Cruiser HO em excelente estado, ideal para passeios familiares.",
+    featured: true,
+    type: "jetski"
+  },
+  {
+    id: 2,
+    brand: "Sea-Doo",
+    year: 2022,
+    model: "GTX 230",
+    hours: 78,
+    price: 22000,
+    images: [
+      "https://images.unsplash.com/photo-1607473129281-bc8e9a88540e?w=500&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop"
+    ],
+    engine: "1630cc Rotax",
+    passengers: 3,
+    fuel: "Gasolina",
+    color: "Preto/Amarelo",
+    description: "Sea-Doo GTX 230 com sistema de som e GPS integrado.",
+    featured: true,
+    type: "jetski"
+  },
+  {
+    id: 3,
+    brand: "Kawasaki",
+    year: 2021,
+    model: "Ultra 310X",
+    hours: 120,
+    price: 16800,
+    images: [
+      "https://images.unsplash.com/photo-1566024287467-f6b5a0b5df27?w=500&h=300&fit=crop"
+    ],
+    engine: "1498cc",
+    passengers: 3,
+    fuel: "Gasolina",
+    color: "Verde/Preto",
+    description: "Kawasaki Ultra 310X, o mais potente da sua categoria.",
+    featured: false,
+    type: "jetski"
+  },
+  {
+    id: 4,
+    brand: "Yamaha",
+    year: 2020,
+    model: "EX Sport",
+    hours: 156,
+    price: 12500,
+    images: [
+      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=300&fit=crop"
+    ],
+    engine: "1049cc",
+    passengers: 1,
+    fuel: "Gasolina",
+    color: "Azul",
+    description: "Yamaha EX Sport, perfeito para iniciantes e diversão.",
+    featured: false,
+    type: "jetski"
+  }
+];
+
+export const mockJetSkiBrands = [
+  "Yamaha", "Sea-Doo", "Kawasaki", "Polaris", "Honda"
+];
