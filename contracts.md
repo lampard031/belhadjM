@@ -171,14 +171,17 @@ GET /api/admin/stats - Estatísticas do dashboard
 4. Testes e validação
 5. Deploy e configuração de produção
 
-## 6. Credenciais Demo
+## 6. Informações da Empresa
 
-### Admin Login
-- Username: admin
-- Password: admin123
+### FTC Automóveis
+- **Nome**: FTC Automóveis
+- **Proprietário**: Fábio Costa
+- **Telefone**: +351 923 575 015 / +351 223 176 692
+- **Email**: ftcautomoveis@gmail.com
+- **Website**: www.ftcautomoveis.com
+- **Morada**: Rua das Pedrinhas Brancas, 682, 4410-365 Arcozelo VNG, Portugal
+- **Redes Sociais**: Facebook, Instagram, WhatsApp
 
-### Teste de Financiamento
-- Preço do veículo: 30.000€
-- Entrada: 5.000€
-- Prazo: 60 meses
-- Prestação calculada: ~534€/mês (TAEG 10.2%)
+### Credenciais Demo
+- **Admin Login**: admin / admin123
+- **Teste de Financiamento**: Preço 30.000€, Entrada 5.000€, Prazo 60 meses = ~534€/mês
