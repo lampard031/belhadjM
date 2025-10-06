@@ -148,13 +148,14 @@ GET /api/admin/stats - Estatísticas do dashboard
 ## 5. Funcionalidades Implementadas
 
 ### ✅ Frontend Completo
-- Homepage com design pixel-perfect do AutosDeal
+- Homepage com design pixel-perfect do AutosDeal adaptado para FTC Automóveis
 - Catálogo de carros com filtros avançados
-- Página de detalhes de carro com reserva
-- Calculadora de financiamento com taxas portuguesas
+- Página de detalhes de carro com reserva de 1.000€
+- Calculadora de financiamento com taxas portuguesas (TAN/TAEG)
 - Painel de administração para gestão de carros
 - Sistema de autenticação admin (mock)
 - Design responsivo e animações
+- Branding completo da FTC Automóveis com dados reais
 
 ### ✅ Integrações Previstas
 - Stripe para pagamentos de reserva (1000€)
