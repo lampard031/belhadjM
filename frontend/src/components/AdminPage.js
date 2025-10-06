@@ -13,7 +13,7 @@ import {
   TrendingUp,
   LogOut
 } from 'lucide-react';
-import { mockCars } from '../data/mockData';
+import { mockCars, mockJetSkis } from '../data/mockData';
 import { useToast } from '../hooks/use-toast';
 
 const AdminPage = () => {
