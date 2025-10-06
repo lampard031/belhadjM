@@ -85,6 +85,27 @@ GET /api/admin/stats - Estatísticas do dashboard
     "color": str,
     "description": str,
     "featured": bool,
+    "type": str,  # "car"
+    "created_at": datetime,
+    "updated_at": datetime
+}
+
+# JetSki Model
+{
+    "_id": ObjectId,
+    "brand": str,
+    "year": int,
+    "model": str,
+    "hours": int,  # Horas de uso
+    "price": float,
+    "images": [str],  # URLs das imagens
+    "engine": str,  # Motor (ex: 1812cc)
+    "passengers": int,  # Número de passageiros
+    "fuel": str,  # Gasolina (padrão para jet-skis)
+    "color": str,
+    "description": str,
+    "featured": bool,
+    "type": str,  # "jetski"
     "created_at": datetime,
     "updated_at": datetime
 }
