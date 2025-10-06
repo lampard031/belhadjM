@@ -18,9 +18,11 @@ import { useToast } from '../hooks/use-toast';
 
 const AdminPage = () => {
   const [cars, setCars] = useState(mockCars);
+  const [jetskis, setJetSkis] = useState(mockJetSkis);
+  const [activeTab, setActiveTab] = useState('cars');
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [selectedCar, setSelectedCar] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [newCar, setNewCar] = useState({
     brand: '',
     year: new Date().getFullYear(),
@@ -32,7 +34,23 @@ const AdminPage = () => {
     color: '',
     description: '',
     images: [],
-    featured: false
+    featured: false,
+    type: 'car'
+  });
+  const [newJetSki, setNewJetSki] = useState({
+    brand: '',
+    year: new Date().getFullYear(),
+    model: '',
+    hours: '',
+    price: '',
+    engine: '',
+    passengers: 1,
+    fuel: 'Gasolina',
+    color: '',
+    description: '',
+    images: [],
+    featured: false,
+    type: 'jetski'
   });
   const navigate = useNavigate();
   const { toast } = useToast();
