@@ -9,7 +9,7 @@ const AboutSection = () => {
           {/* Logo and Service Info */}
           <div className="flex flex-col items-center lg:items-start">
             <div className="border-2 border-white rounded-lg px-8 py-4 mb-8">
-              <h1 className="text-3xl font-bold tracking-wider">AUTOS PORTUGAL</h1>
+              <h1 className="text-3xl font-bold tracking-wider">FTC AUTOMÓVEIS</h1>
             </div>
             
             <div className="text-center lg:text-left mb-8">
