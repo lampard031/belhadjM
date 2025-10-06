@@ -196,8 +196,8 @@ const AdminPage = () => {
           <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Carros em Destaque</p>
-                <p className="text-2xl font-bold text-white">{featuredCars}</p>
+                <p className="text-gray-400 text-sm">Itens em Destaque</p>
+                <p className="text-2xl font-bold text-white">{featuredItems}</p>
               </div>
               <Users className="text-purple-400" size={32} />
             </div>
