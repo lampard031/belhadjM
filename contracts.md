@@ -168,10 +168,12 @@ GET /api/admin/stats - Estatísticas do dashboard
 
 ### Substituições Necessárias
 1. **mockCars** → GET /api/cars
-2. **Formulário de Reserva** → POST /api/reservations + Stripe
-3. **Calculadora de Financiamento** → POST /api/financing/calculate
-4. **Admin Dashboard** → GET /api/admin/stats
-5. **Gestão de Carros** → CRUD /api/cars
+2. **mockJetSkis** → GET /api/jetskis
+3. **Formulário de Reserva** → POST /api/reservations + Stripe
+4. **Calculadora de Financiamento** → POST /api/financing/calculate
+5. **Admin Dashboard** → GET /api/admin/stats
+6. **Gestão de Carros** → CRUD /api/cars
+7. **Gestão de Jet-Skis** → CRUD /api/jetskis
 
 ### Estados e Context
 - Implementar CarContext para gestão do estado dos carros
