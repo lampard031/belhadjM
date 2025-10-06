@@ -214,17 +214,43 @@ const AdminPage = () => {
           </div>
         </div>
 
-        {/* Cars Management */}
+        {/* Vehicles Management */}
         <div className="bg-gray-800 rounded-lg border border-gray-700">
-          <div className="p-6 border-b border-gray-700 flex justify-between items-center">
-            <h3 className="text-xl font-bold text-white">Gestão de Veículos</h3>
-            <button
-              onClick={() => setShowAddModal(true)}
-              className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-300"
-            >
-              <Plus size={20} />
-              <span>Adicionar Carro</span>
-            </button>
+          <div className="p-6 border-b border-gray-700">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-bold text-white">Gestão de Veículos</h3>
+              <button
+                onClick={() => setShowAddModal(true)}
+                className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-300"
+              >
+                <Plus size={20} />
+                <span>Adicionar {activeTab === 'cars' ? 'Carro' : 'Jet-Ski'}</span>
+              </button>
+            </div>
+            
+            {/* Tabs */}
+            <div className="flex space-x-4">
+              <button
+                onClick={() => setActiveTab('cars')}
+                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                  activeTab === 'cars' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                }`}
+              >
+                Carros ({totalCars})
+              </button>
+              <button
+                onClick={() => setActiveTab('jetskis')}
+                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                  activeTab === 'jetskis' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                }`}
+              >
+                Jet-Skis ({totalJetSkis})
+              </button>
+            </div>
           </div>
 
           {/* Cars Table */}
