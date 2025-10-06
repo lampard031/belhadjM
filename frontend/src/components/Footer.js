@@ -76,20 +76,20 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <MapPin size={20} className="text-blue-400 mt-1 flex-shrink-0" />
                 <div className="text-gray-400">
-                  <p>Rua das Amoreiras, 123</p>
-                  <p>1250-020 Lisboa</p>
+                  <p>Rua das Pedrinhas Brancas, 682</p>
+                  <p>4410-365 Arcozelo VNG</p>
                   <p>Portugal</p>
                 </div>
               </div>
               
               <div className="flex items-center space-x-3">
                 <Phone size={20} className="text-green-400 flex-shrink-0" />
-                <span className="text-gray-400">+351 210 123 456</span>
+                <span className="text-gray-400">+351 923 575 015</span>
               </div>
               
               <div className="flex items-center space-x-3">
                 <Mail size={20} className="text-red-400 flex-shrink-0" />
-                <span className="text-gray-400">info@autosportugal.pt</span>
+                <span className="text-gray-400">ftcautomoveis@gmail.com</span>
               </div>
             </div>
 
