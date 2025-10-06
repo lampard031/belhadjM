@@ -188,12 +188,14 @@ GET /api/admin/stats - Estatísticas do dashboard
 ### ✅ Frontend Completo
 - Homepage com design pixel-perfect do AutosDeal adaptado para FTC Automóveis
 - Catálogo de carros com filtros avançados
-- Página de detalhes de carro com reserva de 1.000€
+- **Nova seção de jet-skis** com página dedicada e filtros específicos
+- Páginas de detalhes de carro/jet-ski com reserva de 1.000€
 - Calculadora de financiamento com taxas portuguesas (TAN/TAEG)
-- Painel de administração para gestão de carros
+- Painel de administração para gestão de carros E jet-skis
 - Sistema de autenticação admin (mock)
 - Design responsivo e animações
 - Branding completo da FTC Automóveis com dados reais
+- Menu atualizado: Início | Carros | **Jet-Skis** | Novidades | Financiamento | Contactar
 
 ### ✅ Integrações Previstas
 - Stripe para pagamentos de reserva (1000€)
