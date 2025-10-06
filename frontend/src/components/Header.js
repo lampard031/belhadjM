@@ -54,11 +54,11 @@ const Header = () => {
           <div className="hidden lg:flex items-center space-x-6">
             <div className="flex items-center space-x-2 text-sm">
               <MapPin size={16} />
-              <span>Lisboa, Portugal</span>
+              <span>Arcozelo, Portugal</span>
             </div>
             <div className="flex items-center space-x-2 text-sm">
               <Phone size={16} />
-              <span>+351 210 123 456</span>
+              <span>+351 923 575 015</span>
             </div>
           </div>
 
