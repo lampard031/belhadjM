@@ -144,9 +144,10 @@ const AdminPage = () => {
 
   // Statistics
   const totalCars = cars.length;
-  const totalValue = cars.reduce((sum, car) => sum + car.price, 0);
-  const featuredCars = cars.filter(car => car.featured).length;
-  const avgPrice = totalValue / totalCars || 0;
+  const totalJetSkis = jetskis.length;
+  const totalValue = cars.reduce((sum, car) => sum + car.price, 0) + jetskis.reduce((sum, jetski) => sum + jetski.price, 0);
+  const featuredItems = cars.filter(car => car.featured).length + jetskis.filter(jetski => jetski.featured).length;
+  const avgPrice = totalValue / (totalCars + totalJetSkis) || 0;
 
   return (
     <div className="min-h-screen bg-gray-900">
