@@ -13,6 +13,17 @@ GET /api/cars/featured - Obter carros em destaque
 POST /api/cars/search - Pesquisar carros com filtros
 ```
 
+### Jet-Skis API
+```
+GET /api/jetskis - Obter todos os jet-skis
+GET /api/jetskis/:id - Obter jet-ski por ID
+POST /api/jetskis - Criar novo jet-ski (Admin)
+PUT /api/jetskis/:id - Atualizar jet-ski (Admin)
+DELETE /api/jetskis/:id - Remover jet-ski (Admin)
+GET /api/jetskis/featured - Obter jet-skis em destaque
+POST /api/jetskis/search - Pesquisar jet-skis com filtros
+```
+
 ### Reservations API
 ```
 POST /api/reservations - Criar reserva (1000€ via Stripe)
