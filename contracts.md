@@ -39,6 +39,7 @@ GET /api/admin/stats - Estatísticas do dashboard
 - 6 carros portugueses com marcas como BMW, Mercedes, Audi, VW, Peugeot, Renault
 - Cada carro tem: id, brand, year, model, mileage, price, images, fuel, transmission, color, description, featured
 - Preços em EUR, quilometragem, especificações portuguesas
+- Dados realistas para FTC Automóveis em Arcozelo
 
 ### Taxas de Financiamento (financingRates)
 - **Carros Novos**: TAN 7.25%, TAEG 9.1%, prazo 24-120 meses
