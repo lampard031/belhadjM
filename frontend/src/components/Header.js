@@ -28,13 +28,19 @@ const Header = () => {
               to="/inventario" 
               className="hover:text-gray-300 transition-colors duration-300 font-medium"
             >
-              Inventário
+              Carros
+            </Link>
+            <Link 
+              to="/jetskis" 
+              className="hover:text-gray-300 transition-colors duration-300 font-medium"
+            >
+              Jet-Skis
             </Link>
             <button 
               onClick={() => document.getElementById('novos-carros')?.scrollIntoView({ behavior: 'smooth' })}
               className="hover:text-gray-300 transition-colors duration-300 font-medium"
             >
-              Novos Carros!
+              Novidades!
             </button>
             <Link 
               to="/financiamento" 
