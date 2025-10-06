@@ -36,6 +36,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/inventario" element={<InventoryPage />} />
           <Route path="/carro/:id" element={<CarDetailPage />} />
+          <Route path="/jetskis" element={<JetSkisPage />} />
+          <Route path="/jetski/:id" element={<JetSkiDetailPage />} />
           <Route path="/financiamento" element={<FinancingPage />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminPage />} />
