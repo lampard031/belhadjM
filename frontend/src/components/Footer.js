@@ -9,11 +9,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="border-2 border-white rounded-lg px-4 py-2 inline-block mb-6">
-              <h3 className="text-lg font-bold tracking-wider">FTC AUTOMÓVEIS</h3>
+            <div className="border-2 border-white rounded-lg px-4 py-3 inline-block mb-6">
+              <div className="flex items-center space-x-2">
+                <span className="text-xl">🚗</span>
+                <div>
+                  <h3 className="text-lg font-bold tracking-wider">FTC AUTOMÓVEIS</h3>
+                  <p className="text-xs opacity-75">www.ftcautomoveis.com</p>
+                </div>
+              </div>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              O seu concessionário de confiança em Arcozelo. Oferecemos os melhores carros usados 
+              O seu concessionário de confiança em Arcozelo. Oferecemos os melhores carros usados e jet-skis 
               com financiamento aprovado e serviço de excelência.
             </p>
             <div className="flex space-x-4">
