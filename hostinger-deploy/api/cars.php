@@ -67,6 +67,12 @@ switch($method) {
         
     case 'PUT':
         // Mettre à jour une voiture
+        if (!checkAdminAuth()) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Non autorisé']);
+            exit;
+        }
+        
         parse_str(file_get_contents('php://input'), $data);
         $id = $data['id'];
         
