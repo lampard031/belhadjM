@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { mockCars, mockJetSkis } from '../data/mockData';
 import { useToast } from '../hooks/use-toast';
+import Logo from './Logo';
 
 const AdminPage = () => {
   const [cars, setCars] = useState(mockCars);
