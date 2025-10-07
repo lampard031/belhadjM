@@ -28,6 +28,12 @@ switch($method) {
         break;
         
     case 'POST':
+        if (!checkAdminAuth()) {
+            http_response_code(401);
+            echo json_encode(['error' => 'Non autorisé']);
+            exit;
+        }
+        
         $data = json_decode(file_get_contents('php://input'), true);
         
         $stmt = $pdo->prepare("
