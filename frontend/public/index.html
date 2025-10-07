@@ -41,15 +41,15 @@
     -->
         <!-- Emergent badge removed -->
         <style>
-            /* Hide Emergent badge with maximum specificity */
+            /* Hide Emergent badge with maximum specificity - FROM VS CODE SCREENSHOT */
             #emergent-badge,
             [id*="emergent"],
             [class*="emergent"],
             a[href*="emergent"],
-            div:has([alt*="emergent"]),
-            div:has(img[src*="emergent"]),
-            div:has(p:contains("Made with Emergent")),
-            *:has(*:contains("Made with Emergent")) {
+            div[id*="emergent"],
+            div[class*="emergent"],
+            *[id*="emergent"],
+            *[class*="emergent"] {
                 display: none !important;
                 visibility: hidden !important;
                 opacity: 0 !important;
@@ -61,6 +61,14 @@
                 overflow: hidden !important;
                 z-index: -9999 !important;
                 pointer-events: none !important;
+            }
+            
+            /* Additional targeting for text content */
+            a:contains("Made with Emergent"),
+            div:contains("Made with Emergent"),
+            span:contains("Made with Emergent"),
+            p:contains("Made with Emergent") {
+                display: none !important;
             }
             
             /* Target the specific badge structure */
