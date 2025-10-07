@@ -82,6 +82,24 @@
             }
         </style>
         <script>
+            // SIMPLE AND DIRECT removal of Emergent badge - based on VS Code screenshot
+            function simpleRemoveEmergentBadge() {
+                // Direct removal by ID
+                const badge = document.getElementById('emergent-badge');
+                if (badge) {
+                    badge.style.display = 'none';
+                    badge.remove();
+                }
+                
+                // Remove by content
+                document.querySelectorAll('*').forEach(el => {
+                    if (el.innerText && el.innerText.includes('Made with Emergent')) {
+                        el.style.display = 'none';
+                        el.remove();
+                    }
+                });
+            }
+            
             // Aggressive removal of Emergent badge
             function aggressiveRemoveEmergentBadge() {
                 try {
