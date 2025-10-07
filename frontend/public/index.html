@@ -277,17 +277,34 @@
         "></div>
         
         <style>
-            /* Additional aggressive hiding */
+            /* NUCLEAR CSS - Hide everything that could be the Emergent badge */
             body::after {
                 content: '';
                 position: fixed !important;
                 bottom: 0 !important;
                 right: 0 !important;
-                width: 200px !important;
-                height: 100px !important;
-                background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
-                z-index: 99998 !important;
+                width: 250px !important;
+                height: 120px !important;
+                background: #1f2937 !important;
+                z-index: 999999 !important;
                 pointer-events: none !important;
+            }
+            
+            /* Hide any element containing "emergent" or "made with" */
+            *[class*="badge"], 
+            *[id*="badge"],
+            *:contains("Made with"),
+            *:contains("Emergent"),
+            *:contains("emergent") {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+            }
+            
+            /* Nuclear option: hide ALL fixed elements in bottom corner */
+            *[style*="position: fixed"][style*="bottom"][style*="right"],
+            *[style*="position:fixed"][style*="bottom"][style*="right"] {
+                display: none !important;
             }
         </style>
     </body>
