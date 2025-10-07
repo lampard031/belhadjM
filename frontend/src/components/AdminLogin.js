@@ -44,7 +44,7 @@ const AdminLogin = () => {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="border-2 border-white rounded-lg px-4 py-3 inline-block mb-4 bg-black bg-opacity-50">
-            <Logo size="medium" />
+            <Logo size="large" />
           </div>
           <h2 className="text-2xl font-bold text-white">Painel de Administração</h2>
           <p className="text-gray-400 mt-2">Faça login para gerir o inventário</p>
