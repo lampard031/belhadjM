@@ -29,7 +29,7 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Navigation */}
+          {/* Navigation - Desktop */}
           <nav className="hidden md:flex space-x-8">
             <Link 
               to="/" 
