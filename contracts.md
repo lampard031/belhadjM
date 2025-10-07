@@ -189,6 +189,7 @@ GET /api/admin/stats - Estatísticas do dashboard
 
 ### ✅ Frontend Completo
 - Homepage com design pixel-perfect do AutosDeal adaptado para FTC Automóveis
+- **Logo professionnel** intégré partout (Header, Hero, About, Footer, Admin)
 - Catálogo de carros com filtros avançados
 - **Nova seção de jet-skis** com página dedicada e filtros específicos
 - Páginas de detalhes de carro/jet-ski com reserva de 1.000€
@@ -196,7 +197,7 @@ GET /api/admin/stats - Estatísticas do dashboard
 - Painel de administração para gestão de carros E jet-skis
 - Sistema de autenticação admin (mock)
 - Design responsivo e animações
-- Branding completo da FTC Automóveis com dados reais
+- **Branding completo** da FTC Automóveis com logo réel et coordonnées complètes
 - Menu atualizado: Início | Carros | **Jet-Skis** | Novidades | Financiamento | Contactar
 
 ### ✅ Integrações Previstas
