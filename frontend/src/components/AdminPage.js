@@ -257,12 +257,6 @@ const AdminPage = () => {
       }
     }
   };
-      toast({
-        title: activeTab === 'cars' ? "Carro removido" : "Jet-ski removido",
-        description: "O veículo foi removido do inventário",
-      });
-    }
-  };
 
   const openEditModal = (item) => {
     setSelectedItem({ ...item });
