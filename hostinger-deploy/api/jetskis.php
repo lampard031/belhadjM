@@ -49,5 +49,44 @@ switch($method) {
         
         echo json_encode(['success' => true, 'id' => $pdo->lastInsertId()]);
         break;
+        
+    case 'PUT':
+        // Mettre à jour un jet-ski
+        parse_str(file_get_contents('php://input'), $data);
+        $id = $data['id'];
+        
+        $stmt = $pdo->prepare("
+            UPDATE jetskis SET brand=?, year=?, model=?, hours=?, price=?, engine=?, passengers=?, fuel=?, color=?, description=?, featured=?
+            WHERE id=?
+        ");
+        
+        $stmt->execute([
+            $data['brand'],
+            $data['year'], 
+            $data['model'],
+            $data['hours'],
+            $data['price'],
+            $data['engine'],
+            $data['passengers'],
+            $data['fuel'],
+            $data['color'],
+            $data['description'],
+            $data['featured'] ? 1 : 0,
+            $id
+        ]);
+        
+        echo json_encode(['success' => true]);
+        break;
+        
+    case 'DELETE':
+        // Supprimer un jet-ski
+        parse_str(file_get_contents('php://input'), $data);
+        $id = $data['id'];
+        
+        $stmt = $pdo->prepare("DELETE FROM jetskis WHERE id = ?");
+        $stmt->execute([$id]);
+        
+        echo json_encode(['success' => true]);
+        break;
 }
 ?>
