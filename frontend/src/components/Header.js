@@ -30,40 +30,40 @@ const Header = () => {
           </div>
 
           {/* Navigation - Desktop */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             <Link 
               to="/" 
-              className="hover:text-gray-300 transition-colors duration-300 font-medium"
+              className="hover:text-gray-300 transition-colors duration-300 font-medium text-white flex items-center h-full py-2"
             >
               Início
             </Link>
             <Link 
               to="/inventario" 
-              className="hover:text-gray-300 transition-colors duration-300 font-medium"
+              className="hover:text-gray-300 transition-colors duration-300 font-medium text-white flex items-center h-full py-2"
             >
               Carros
             </Link>
             <Link 
               to="/jetskis" 
-              className="hover:text-gray-300 transition-colors duration-300 font-medium"
+              className="hover:text-gray-300 transition-colors duration-300 font-medium text-white flex items-center h-full py-2"
             >
               Jet-Skis
             </Link>
             <button 
               onClick={() => document.getElementById('novos-carros')?.scrollIntoView({ behavior: 'smooth' })}
-              className="hover:text-gray-300 transition-colors duration-300 font-medium"
+              className="hover:text-gray-300 transition-colors duration-300 font-medium text-white flex items-center h-full py-2 bg-transparent border-0 cursor-pointer"
             >
               Novidades!
             </button>
             <Link 
               to="/financiamento" 
-              className="hover:text-gray-300 transition-colors duration-300 font-medium"
+              className="hover:text-gray-300 transition-colors duration-300 font-medium text-white flex items-center h-full py-2"
             >
               Financiamento
             </Link>
             <button 
               onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })}
-              className="hover:text-gray-300 transition-colors duration-300 font-medium"
+              className="hover:text-gray-300 transition-colors duration-300 font-medium text-white flex items-center h-full py-2 bg-transparent border-0 cursor-pointer"
             >
               Contactar
             </button>
