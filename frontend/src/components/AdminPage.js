@@ -54,12 +54,40 @@ const AdminPage = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if admin is authenticated
-    const isAuthenticated = localStorage.getItem('adminAuthenticated');
-    if (!isAuthenticated) {
-      navigate('/admin');
-    }
-  }, [navigate]);
+    const checkAuthAndLoadData = async () => {
+      try {
+        // Check if admin is authenticated via API
+        const authResponse = await adminAPI.getStatus();
+        if (!authResponse.data.logged_in) {
+          navigate('/admin');
+          return;
+        }
+
+        // Load all data
+        const [carsResponse, jetskisResponse, statsResponse] = await Promise.all([
+          carsAPI.getAll(),
+          jetskisAPI.getAll(),
+          adminAPI.getStats()
+        ]);
+
+        setCars(carsResponse.data);
+        setJetSkis(jetskisResponse.data);
+        setStats(statsResponse.data.stats);
+      } catch (error) {
+        console.error('Error loading admin data:', error);
+        toast({
+          title: "Erro",
+          description: "Erro ao carregar dados do painel administrativo",
+          variant: "destructive",
+        });
+        navigate('/admin');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAuthAndLoadData();
+  }, [navigate, toast]);
 
   const handleLogout = () => {
     localStorage.removeItem('adminAuthenticated');
