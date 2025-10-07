@@ -9,20 +9,25 @@ const Header = () => {
   return (
     <header className="bg-gray-900 text-white relative z-50">
       <div className="container mx-auto px-4 py-4">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
+        {/* Mobile Layout - Logo centered */}
+        <div className="flex md:hidden justify-center items-center mb-4">
           <Link to="/" className="flex items-center">
-            <div className="border-2 border-white rounded-lg px-4 py-3 bg-black bg-opacity-50 hover:bg-opacity-70 transition-all duration-300">
-              {/* Desktop: Large logo on left */}
-              <div className="hidden md:block">
-                <Logo size="large" />
-              </div>
-              {/* Mobile: Centered large logo */}
-              <div className="block md:hidden w-full">
-                <Logo size="xl" isMobile={true} />
-              </div>
+            <div className="border-2 border-white rounded-lg px-6 py-3 bg-black bg-opacity-50 hover:bg-opacity-70 transition-all duration-300">
+              <Logo size="xxl" isMobile={true} />
             </div>
           </Link>
+        </div>
+        
+        {/* Desktop Layout - Logo on left */}
+        <div className="flex justify-between items-center">
+          {/* Desktop Logo */}
+          <div className="hidden md:block">
+            <Link to="/" className="flex items-center">
+              <div className="border-2 border-white rounded-lg px-6 py-3 bg-black bg-opacity-50 hover:bg-opacity-70 transition-all duration-300">
+                <Logo size="xl" />
+              </div>
+            </Link>
+          </div>
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
