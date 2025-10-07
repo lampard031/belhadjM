@@ -131,36 +131,6 @@
         
         <!-- Overlay removed to fix white screen issue -->
         
-        <style>
-            /* CSS to hide badge area - FIXED */
-            body::after {
-                content: '';
-                position: fixed !important;
-                bottom: 0 !important;
-                right: 0 !important;
-                width: 200px !important;
-                height: 80px !important;
-                background: #1f2937 !important;
-                z-index: 999 !important;
-                pointer-events: none !important;
-            }
-            
-            /* Hide any element containing "emergent" or "made with" */
-            *[class*="badge"], 
-            *[id*="badge"],
-            *:contains("Made with"),
-            *:contains("Emergent"),
-            *:contains("emergent") {
-                display: none !important;
-                visibility: hidden !important;
-                opacity: 0 !important;
-            }
-            
-            /* Nuclear option: hide ALL fixed elements in bottom corner */
-            *[style*="position: fixed"][style*="bottom"][style*="right"],
-            *[style*="position:fixed"][style*="bottom"][style*="right"] {
-                display: none !important;
-            }
-        </style>
+        <!-- Aggressive CSS removed -->
     </body>
 </html>
