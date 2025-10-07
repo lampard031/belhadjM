@@ -220,5 +220,32 @@
                 person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
             });
         </script>
+        
+        <!-- Add overlay to hide emergent badge -->
+        <div id="badge-overlay" style="
+            position: fixed !important;
+            bottom: 0px !important;
+            right: 0px !important;
+            width: 200px !important;
+            height: 100px !important;
+            background: transparent !important;
+            z-index: 99999 !important;
+            pointer-events: none !important;
+        "></div>
+        
+        <style>
+            /* Additional aggressive hiding */
+            body::after {
+                content: '';
+                position: fixed !important;
+                bottom: 0 !important;
+                right: 0 !important;
+                width: 200px !important;
+                height: 100px !important;
+                background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+                z-index: 99998 !important;
+                pointer-events: none !important;
+            }
+        </style>
     </body>
 </html>
