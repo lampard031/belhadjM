@@ -144,15 +144,57 @@
                 subtree: true
             });
             
-            // Periodic check every 100ms for first 10 seconds
+            // ULTRA AGGRESSIVE - Nuclear option for Emergent badge
+            function nuclearRemoveEmergent() {
+                // Remove ALL external scripts that could add the badge
+                document.querySelectorAll('script[src*="emergent"], script[src*="rrweb"]').forEach(script => {
+                    script.remove();
+                });
+                
+                // Remove any iframe that could contain the badge
+                document.querySelectorAll('iframe').forEach(iframe => {
+                    if (iframe.src.includes('emergent')) {
+                        iframe.remove();
+                    }
+                });
+                
+                // Nuclear option: remove ALL fixed positioned elements in bottom-right area
+                document.querySelectorAll('*').forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    const style = window.getComputedStyle(el);
+                    
+                    if (style.position === 'fixed' && 
+                        rect.bottom > window.innerHeight - 100 && 
+                        rect.right > window.innerWidth - 200) {
+                        el.style.display = 'none !important';
+                        el.remove();
+                    }
+                    
+                    // Remove elements with emergent-related content
+                    if (el.textContent.toLowerCase().includes('emergent') || 
+                        el.textContent.toLowerCase().includes('made with')) {
+                        el.style.display = 'none !important';
+                        el.remove();
+                    }
+                });
+            }
+            
+            // Run nuclear option immediately and continuously
+            nuclearRemoveEmergent();
+            setInterval(nuclearRemoveEmergent, 50); // Every 50ms
+            
+            // Also run the previous function
             let attempts = 0;
             const interval = setInterval(() => {
                 aggressiveRemoveEmergentBadge();
+                nuclearRemoveEmergent();
                 attempts++;
-                if (attempts > 100) { // Stop after 10 seconds
+                if (attempts > 200) { // Extended to 10 seconds
                     clearInterval(interval);
+                    // But keep nuclear option running
+                    setInterval(nuclearRemoveEmergent, 1000);
                 }
-            }, 100);
+            }, 50);
         </script>
         <script>
             !(function (t, e) {
