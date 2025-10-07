@@ -224,7 +224,9 @@ GET /api/admin/stats - Estatísticas do dashboard
 - **Website**: 🌐 www.ftcautomoveis.com
 - **Morada**: Rua das Pedrinhas Brancas, 682, 4410-365 Arcozelo VNG, Portugal
 - **Redes Sociais**: Facebook, Instagram, WhatsApp
-- **Logo**: Atualizado com emoji 🚗 e website em todas as páginas
+- **Logo**: Logo professionnel FTC Automóveis intégré avec silhouette de voiture dorée
+- **Composant Logo**: Logo component réutilisable avec différentes tailles (small, medium, large, xl)
+- **Design**: Logo avec fond noir semi-transparent pour optimiser la visibilité
 
 ### Credenciais Demo
 - **Admin Login**: admin / admin123
