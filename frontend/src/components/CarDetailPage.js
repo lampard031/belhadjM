@@ -2,21 +2,39 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import { mockCars } from '../data/mockData';
 import { ChevronLeft, ChevronRight, Phone, Mail, MapPin, Calculator, CreditCard } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import { carsAPI, handleAPIError } from '../services/api';
 
 const CarDetailPage = () => {
   const { id } = useParams();
   const [car, setCar] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showReservationModal, setShowReservationModal] = useState(false);
   const [showFinancingModal, setShowFinancingModal] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
-    const foundCar = mockCars.find(c => c.id === parseInt(id));
-    setCar(foundCar);
+    const fetchCar = async () => {
+      try {
+        setLoading(true);
+        const response = await carsAPI.getById(id);
+        setCar(response.data);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching car:', err);
+        setError('Erro ao carregar detalhes do carro');
+        setCar(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchCar();
+    }
   }, [id]);
 
   const formatPrice = (price) => {
