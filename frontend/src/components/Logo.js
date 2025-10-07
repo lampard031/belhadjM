@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Logo = ({ size = 'medium', showWebsite = true, className = '' }) => {
-  const logoUrl = "https://customer-assets.emergentagent.com/job_ca55c247-2278-4b42-b154-ffae26a79ca9/artifacts/m2zg5720_WhatsApp%20Image%202025-10-07%20at%2011.59.34_62f9fb2d.jpg";
+const Logo = ({ size = 'medium', showWebsite = false, className = '' }) => {
+  const logoUrl = "https://customer-assets.emergentagent.com/job_ca55c247-2278-4b42-b154-ffae26a79ca9/artifacts/gerwhcc8_Untitled%20%28150%20x%2075%20px%29.png";
   
   const sizeClasses = {
     small: 'h-8',
