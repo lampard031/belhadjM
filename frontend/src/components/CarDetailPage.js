@@ -73,12 +73,25 @@ const CarDetailPage = () => {
     return monthlyPayment;
   };
 
-  if (!car) {
+  if (loading) {
     return (
       <div className="min-h-screen bg-gray-900">
         <Header />
         <div className="container mx-auto px-4 py-16 text-center text-white">
-          <h1 className="text-2xl font-bold mb-4">Carro não encontrado</h1>
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-white mb-4"></div>
+          <h1 className="text-2xl font-bold">A carregar detalhes...</h1>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error || !car) {
+    return (
+      <div className="min-h-screen bg-gray-900">
+        <Header />
+        <div className="container mx-auto px-4 py-16 text-center text-white">
+          <h1 className="text-2xl font-bold mb-4">{error || 'Carro não encontrado'}</h1>
           <Link to="/inventario" className="text-blue-400 hover:text-blue-300">
             Voltar ao inventário
           </Link>
