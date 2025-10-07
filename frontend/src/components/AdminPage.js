@@ -181,7 +181,7 @@ const AdminPage = () => {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <div className="border-2 border-white rounded px-3 py-2 bg-black bg-opacity-50">
-              <Logo size="small" />
+              <Logo size="medium" />
             </div>
             <h2 className="text-xl text-white">Painel de Administração</h2>
           </div>
