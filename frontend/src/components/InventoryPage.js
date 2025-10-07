@@ -34,6 +34,27 @@ const InventoryPage = () => {
     return new Intl.NumberFormat('pt-PT').format(mileage) + ' KM';
   };
 
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        setLoading(true);
+        const response = await carsAPI.getAll();
+        setCars(response.data);
+        setFilteredCars(response.data);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching cars:', err);
+        setError('Erro ao carregar inventário');
+        setCars([]);
+        setFilteredCars([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCars();
+  }, []);
+
   const applyFilters = () => {
     let filtered = cars.filter(car => {
       return (
@@ -48,9 +69,9 @@ const InventoryPage = () => {
     setFilteredCars(filtered);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     applyFilters();
-  }, [filters]);
+  }, [filters, cars]);
 
   return (
     <div className="min-h-screen bg-gray-900">
