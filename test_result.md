@@ -236,8 +236,9 @@ test_plan:
   current_focus:
     - "Frontend integration with PHP backend"
     - "Admin panel integration with PHP auth"
+    - "Production build and deployment package"
   stuck_tasks: []
-  test_all: false
+  test_all: true
   test_priority: "high_first"
 
 agent_communication:
