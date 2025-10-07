@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { User, Lock, Eye, EyeOff } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import Logo from './Logo';
+import { adminAPI, handleAPIError } from '../services/api';
 
 const AdminLogin = () => {
   const [credentials, setCredentials] = useState({
@@ -18,24 +19,26 @@ const AdminLogin = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Mock authentication - replace with actual backend call
-    setTimeout(() => {
-      if (credentials.username === 'admin' && credentials.password === 'admin123') {
+    try {
+      const response = await adminAPI.login(credentials);
+      
+      if (response.data.success) {
         toast({
           title: "Login realizado com sucesso",
           description: "Bem-vindo ao painel de administração",
         });
-        localStorage.setItem('adminAuthenticated', 'true');
         navigate('/admin/dashboard');
-      } else {
-        toast({
-          title: "Erro de autenticação",
-          description: "Credenciais inválidas. Tente novamente.",
-          variant: "destructive"
-        });
       }
+    } catch (error) {
+      console.error('Login error:', error);
+      toast({
+        title: "Erro de autenticação",
+        description: "Credenciais inválidas. Tente novamente.",
+        variant: "destructive"
+      });
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   return (
