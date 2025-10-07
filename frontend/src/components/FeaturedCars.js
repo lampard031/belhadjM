@@ -50,6 +50,38 @@ const FeaturedCars = () => {
     return new Intl.NumberFormat('pt-PT').format(mileage) + ' KM';
   };
 
+  if (loading) {
+    return (
+      <section id="novos-carros" className="py-16 bg-gray-900 text-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 tracking-wider">
+            NOVOS CARROS!
+          </h2>
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+            <p className="mt-4 text-gray-400">A carregar carros em destaque...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="novos-carros" className="py-16 bg-gray-900 text-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 tracking-wider">
+            NOVOS CARROS!
+          </h2>
+          <div className="text-center">
+            <p className="text-red-400">{error}</p>
+            <p className="text-gray-400 mt-2">Por favor, tente novamente mais tarde.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="novos-carros" className="py-16 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
