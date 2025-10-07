@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Lock, Eye, EyeOff } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import Logo from './Logo';
 
 const AdminLogin = () => {
   const [credentials, setCredentials] = useState({
