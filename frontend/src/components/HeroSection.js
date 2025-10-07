@@ -39,7 +39,7 @@ const HeroSection = () => {
       <div className="absolute bottom-20 right-8 bg-black bg-opacity-80 text-white px-6 py-4 rounded-lg">
         <div className="text-center">
           <div className="mb-3">
-            <Logo size="small" showWebsite={false} />
+            <Logo size="small" />
           </div>
           <p className="text-xs mb-2">Financiamento 100% aprovado</p>
           <p className="text-sm font-bold">📱 +351 923 575 015</p>
