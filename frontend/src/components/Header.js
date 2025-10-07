@@ -11,8 +11,12 @@ const Header = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <div className="border-2 border-white rounded-lg px-6 py-2 bg-transparent hover:bg-white hover:text-gray-900 transition-all duration-300">
-              <h1 className="text-xl font-bold tracking-wider">FTC AUTOMÓVEIS</h1>
+            <div className="flex items-center space-x-3 border-2 border-white rounded-lg px-6 py-2 bg-transparent hover:bg-white hover:text-gray-900 transition-all duration-300 group">
+              <div className="text-2xl">🚗</div>
+              <div>
+                <h1 className="text-xl font-bold tracking-wider">FTC AUTOMÓVEIS</h1>
+                <p className="text-xs opacity-75 group-hover:opacity-100">www.ftcautomoveis.com</p>
+              </div>
             </div>
           </Link>
 
