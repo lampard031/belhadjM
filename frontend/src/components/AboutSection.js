@@ -10,7 +10,7 @@ const AboutSection = () => {
           {/* Logo and Service Info */}
           <div className="flex flex-col items-center lg:items-start">
             <div className="border-2 border-white rounded-lg px-8 py-6 mb-8 text-center bg-black bg-opacity-30">
-              <Logo size="large" showWebsite={true} className="justify-center" />
+              <Logo size="large" className="justify-center" />
             </div>
             
             <div className="text-center lg:text-left mb-8">
