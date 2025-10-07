@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import { mockCars, mockBrands, mockYears } from '../data/mockData';
+import { mockBrands, mockYears } from '../data/mockData';
 import { Link } from 'react-router-dom';
 import { Eye, Heart, Filter } from 'lucide-react';
+import { carsAPI, handleAPIError } from '../services/api';
 
 const InventoryPage = () => {
-  const [cars] = useState(mockCars);
-  const [filteredCars, setFilteredCars] = useState(mockCars);
+  const [cars, setCars] = useState([]);
+  const [filteredCars, setFilteredCars] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [filters, setFilters] = useState({
     brand: '',
     minPrice: '',
