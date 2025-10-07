@@ -228,10 +228,8 @@ metadata:
 
 test_plan:
   current_focus:
-    - "PHP API endpoints for cars CRUD"
-    - "PHP API endpoints for jet-skis CRUD"
-    - "Admin authentication system"
-    - "Database configuration and connection"
+    - "Frontend integration with PHP backend"
+    - "Admin panel integration with PHP auth"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
