@@ -4,6 +4,12 @@ require_once 'config.php';
 $method = $_SERVER['REQUEST_METHOD'];
 $request = $_SERVER['REQUEST_URI'];
 
+// Helper function to check admin authentication for write operations
+function checkAdminAuth() {
+    session_start();
+    return isset($_SESSION['admin_logged']) && $_SESSION['admin_logged'] === true;
+}
+
 switch($method) {
     case 'GET':
         if (strpos($request, '/featured') !== false) {
