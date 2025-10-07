@@ -180,33 +180,48 @@ const AdminPage = () => {
     }
   };
 
-  const handleEditItem = () => {
-    const updatedItem = {
-      ...selectedItem,
-      price: parseFloat(selectedItem.price),
-      year: parseInt(selectedItem.year)
-    };
+  const handleEditItem = async () => {
+    try {
+      const updatedItem = {
+        ...selectedItem,
+        price: parseFloat(selectedItem.price),
+        year: parseInt(selectedItem.year)
+      };
 
-    if (activeTab === 'cars') {
-      updatedItem.mileage = parseInt(selectedItem.mileage);
-      setCars(prev => prev.map(car => 
-        car.id === selectedItem.id ? updatedItem : car
-      ));
-    } else {
-      updatedItem.hours = parseInt(selectedItem.hours);
-      updatedItem.passengers = parseInt(selectedItem.passengers);
-      setJetSkis(prev => prev.map(jetski => 
-        jetski.id === selectedItem.id ? updatedItem : jetski
-      ));
+      if (activeTab === 'cars') {
+        updatedItem.mileage = parseInt(selectedItem.mileage);
+        await carsAPI.update(selectedItem.id, updatedItem);
+        // Refresh cars list
+        const carsResponse = await carsAPI.getAll();
+        setCars(carsResponse.data);
+      } else {
+        updatedItem.hours = parseInt(selectedItem.hours);
+        updatedItem.passengers = parseInt(selectedItem.passengers);
+        await jetskisAPI.update(selectedItem.id, updatedItem);
+        // Refresh jetskis list
+        const jetskisResponse = await jetskisAPI.getAll();
+        setJetSkis(jetskisResponse.data);
+      }
+
+      // Refresh stats
+      const statsResponse = await adminAPI.getStats();
+      setStats(statsResponse.data.stats);
+      
+      setShowEditModal(false);
+      setSelectedItem(null);
+      
+      toast({
+        title: activeTab === 'cars' ? "Carro atualizado" : "Jet-ski atualizado",
+        description: "As informações do veículo foram atualizadas",
+      });
+    } catch (error) {
+      console.error('Error updating item:', error);
+      toast({
+        title: "Erro",
+        description: "Erro ao atualizar veículo. Verifique se está autenticado.",
+        variant: "destructive",
+      });
     }
-    
-    setShowEditModal(false);
-    setSelectedItem(null);
-    
-    toast({
-      title: activeTab === 'cars' ? "Carro atualizado" : "Jet-ski atualizado",
-      description: "As informações do veículo foram atualizadas",
-    });
   };
 
   const handleDeleteItem = (itemId) => {
