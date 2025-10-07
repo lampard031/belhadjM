@@ -216,13 +216,15 @@ GET /api/admin/stats - Estatísticas do dashboard
 ## 6. Informações da Empresa
 
 ### FTC Automóveis
-- **Nome**: FTC Automóveis
+- **Nome**: FTC Automóveis 🚗
 - **Proprietário**: Fábio Costa
-- **Telefone**: +351 923 575 015 / +351 223 176 692
-- **Email**: ftcautomoveis@gmail.com
-- **Website**: www.ftcautomoveis.com
+- **Telefone Mobile**: 📱 +351 923 575 015
+- **Telefone Fixo**: ☎️ +351 223 176 692
+- **Email**: info@ftcautomoveis.com
+- **Website**: 🌐 www.ftcautomoveis.com
 - **Morada**: Rua das Pedrinhas Brancas, 682, 4410-365 Arcozelo VNG, Portugal
 - **Redes Sociais**: Facebook, Instagram, WhatsApp
+- **Logo**: Atualizado com emoji 🚗 e website em todas as páginas
 
 ### Credenciais Demo
 - **Admin Login**: admin / admin123
