@@ -41,44 +41,10 @@
     -->
         <!-- Emergent badge removed -->
         <style>
-            /* Hide Emergent badge with maximum specificity - FROM VS CODE SCREENSHOT */
-            #emergent-badge,
-            [id*="emergent"],
-            [class*="emergent"],
-            a[href*="emergent"],
-            div[id*="emergent"],
-            div[class*="emergent"],
-            *[id*="emergent"],
-            *[class*="emergent"] {
+            /* Simple badge hiding without aggressive selectors */
+            #emergent-badge {
                 display: none !important;
                 visibility: hidden !important;
-                opacity: 0 !important;
-                position: fixed !important;
-                left: -99999px !important;
-                top: -99999px !important;
-                width: 0 !important;
-                height: 0 !important;
-                overflow: hidden !important;
-                z-index: -9999 !important;
-                pointer-events: none !important;
-            }
-            
-            /* Additional targeting for text content */
-            a:contains("Made with Emergent"),
-            div:contains("Made with Emergent"),
-            span:contains("Made with Emergent"),
-            p:contains("Made with Emergent") {
-                display: none !important;
-            }
-            
-            /* Target the specific badge structure */
-            a[style*="position: fixed"][style*="bottom: 20px"][style*="right: 20px"] {
-                display: none !important;
-            }
-            
-            /* Hide any fixed positioned element in bottom right corner */
-            *[style*="position: fixed"][style*="bottom"][style*="right"] {
-                display: none !important;
             }
         </style>
         <script>
