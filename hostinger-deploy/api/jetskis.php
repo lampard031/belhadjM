@@ -12,19 +12,40 @@ function checkAdminAuth() {
 
 switch($method) {
     case 'GET':
-        if (strpos($request, '/featured') !== false) {
+        // Extraire l'ID de la requête si présent
+        if (preg_match('/\/jetskis\/(\d+)/', $request, $matches)) {
+            // Récupérer un jet-ski spécifique par ID
+            $id = $matches[1];
+            $stmt = $pdo->prepare("SELECT * FROM jetskis WHERE id = ?");
+            $stmt->execute([$id]);
+            $jetski = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($jetski) {
+                $jetski['images'] = json_decode($jetski['images'], true);
+                echo json_encode($jetski);
+            } else {
+                http_response_code(404);
+                echo json_encode(['error' => 'Jet-ski non trouvé']);
+            }
+        } else if (strpos($request, '/featured') !== false) {
             $stmt = $pdo->query("SELECT * FROM jetskis WHERE featured = 1 ORDER BY created_at DESC");
+            $jetskis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach($jetskis as &$jetski) {
+                $jetski['images'] = json_decode($jetski['images'], true);
+            }
+            
+            echo json_encode($jetskis);
         } else {
             $stmt = $pdo->query("SELECT * FROM jetskis ORDER BY created_at DESC");
+            $jetskis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach($jetskis as &$jetski) {
+                $jetski['images'] = json_decode($jetski['images'], true);
+            }
+            
+            echo json_encode($jetskis);
         }
-        
-        $jetskis = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        foreach($jetskis as &$jetski) {
-            $jetski['images'] = json_decode($jetski['images'], true);
-        }
-        
-        echo json_encode($jetskis);
         break;
         
     case 'POST':
