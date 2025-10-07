@@ -89,9 +89,18 @@ const AdminPage = () => {
     checkAuthAndLoadData();
   }, [navigate, toast]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('adminAuthenticated');
-    navigate('/admin');
+  const handleLogout = async () => {
+    try {
+      await adminAPI.logout();
+      toast({
+        title: "Sucesso",
+        description: "Sessão encerrada com sucesso",
+      });
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      navigate('/admin');
+    }
   };
 
   const formatPrice = (price) => {
