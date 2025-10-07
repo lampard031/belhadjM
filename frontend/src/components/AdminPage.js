@@ -133,32 +133,51 @@ const AdminPage = () => {
     });
   };
 
-  const handleAddItem = () => {
-    const itemWithId = {
-      ...newItem,
-      id: Date.now(),
-      images: newItem.images.length > 0 ? newItem.images : ['https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop'],
-      price: parseFloat(newItem.price),
-      year: parseInt(newItem.year),
-      type: activeTab === 'cars' ? 'car' : 'jetski'
-    };
+  const handleAddItem = async () => {
+    try {
+      const itemData = {
+        ...newItem,
+        images: newItem.images.length > 0 ? newItem.images : ['https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&h=300&fit=crop'],
+        price: parseFloat(newItem.price),
+        year: parseInt(newItem.year),
+        type: activeTab === 'cars' ? 'car' : 'jetski'
+      };
 
-    if (activeTab === 'cars') {
-      itemWithId.mileage = parseInt(newItem.mileage);
-      setCars(prev => [...prev, itemWithId]);
-    } else {
-      itemWithId.hours = parseInt(newItem.hours);
-      itemWithId.passengers = parseInt(newItem.passengers);
-      setJetSkis(prev => [...prev, itemWithId]);
+      let response;
+      if (activeTab === 'cars') {
+        itemData.mileage = parseInt(newItem.mileage);
+        response = await carsAPI.create(itemData);
+        // Refresh cars list
+        const carsResponse = await carsAPI.getAll();
+        setCars(carsResponse.data);
+      } else {
+        itemData.hours = parseInt(newItem.hours);
+        itemData.passengers = parseInt(newItem.passengers);
+        response = await jetskisAPI.create(itemData);
+        // Refresh jetskis list
+        const jetskisResponse = await jetskisAPI.getAll();
+        setJetSkis(jetskisResponse.data);
+      }
+
+      // Refresh stats
+      const statsResponse = await adminAPI.getStats();
+      setStats(statsResponse.data.stats);
+      
+      setShowAddModal(false);
+      resetNewItem();
+      
+      toast({
+        title: activeTab === 'cars' ? "Carro adicionado" : "Jet-ski adicionado",
+        description: `O veículo foi adicionado com sucesso ao inventário`,
+      });
+    } catch (error) {
+      console.error('Error adding item:', error);
+      toast({
+        title: "Erro",
+        description: "Erro ao adicionar veículo. Verifique se está autenticado.",
+        variant: "destructive",
+      });
     }
-    
-    setShowAddModal(false);
-    resetNewItem();
-    
-    toast({
-      title: activeTab === 'cars' ? "Carro adicionado" : "Jet-ski adicionado",
-      description: `O veículo foi adicionado com sucesso ao inventário`,
-    });
   };
 
   const handleEditItem = () => {
