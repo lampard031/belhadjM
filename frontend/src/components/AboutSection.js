@@ -9,12 +9,8 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Logo and Service Info */}
           <div className="flex flex-col items-center lg:items-start">
-            <div className="border-2 border-white rounded-lg px-8 py-4 mb-8 text-center">
-              <div className="flex items-center justify-center space-x-3 mb-2">
-                <span className="text-4xl">🚗</span>
-                <h1 className="text-3xl font-bold tracking-wider">FTC AUTOMÓVEIS</h1>
-              </div>
-              <p className="text-sm opacity-75">www.ftcautomoveis.com</p>
+            <div className="border-2 border-white rounded-lg px-8 py-6 mb-8 text-center bg-black bg-opacity-30">
+              <Logo size="large" showWebsite={true} className="justify-center" />
             </div>
             
             <div className="text-center lg:text-left mb-8">
