@@ -90,9 +90,24 @@ const InventoryPage = () => {
       </section>
 
       <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Filters Sidebar */}
-          <div className="lg:w-1/4">
+        {loading && (
+          <div className="text-center py-12">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+            <p className="mt-4 text-gray-400">A carregar inventário...</p>
+          </div>
+        )}
+
+        {error && (
+          <div className="text-center py-12">
+            <p className="text-red-400 text-xl mb-4">{error}</p>
+            <p className="text-gray-400">Por favor, tente novamente mais tarde.</p>
+          </div>
+        )}
+
+        {!loading && !error && (
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Filters Sidebar */}
+            <div className="lg:w-1/4">
             <div className="bg-gray-800 rounded-lg p-6 sticky top-4">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl font-bold text-white">Filtros</h3>
