@@ -13,13 +13,21 @@ import {
   LogOut,
   Waves
 } from 'lucide-react';
-import { mockCars, mockJetSkis } from '../data/mockData';
 import { useToast } from '../hooks/use-toast';
 import Logo from './Logo';
+import { carsAPI, jetskisAPI, adminAPI, handleAPIError } from '../services/api';
 
 const AdminPage = () => {
-  const [cars, setCars] = useState(mockCars);
-  const [jetskis, setJetSkis] = useState(mockJetSkis);
+  const [cars, setCars] = useState([]);
+  const [jetskis, setJetSkis] = useState([]);
+  const [stats, setStats] = useState({
+    cars_count: 0,
+    jetskis_count: 0,
+    total_vehicles: 0,
+    avg_car_price: 0,
+    avg_jetski_price: 0
+  });
+  const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('cars');
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
