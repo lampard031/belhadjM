@@ -205,13 +205,11 @@
                 });
             }
             
-            // Run simple function first
+            // Run simple function only
             simpleRemoveEmergentBadge();
             
-            // Run nuclear option immediately and continuously
-            nuclearRemoveEmergent();
-            setInterval(simpleRemoveEmergentBadge, 100); // Every 100ms
-            setInterval(nuclearRemoveEmergent, 50); // Every 50ms
+            // Run less frequently to avoid performance issues
+            setInterval(simpleRemoveEmergentBadge, 2000); // Every 2 seconds only
             
             // Also run the previous function
             let attempts = 0;
