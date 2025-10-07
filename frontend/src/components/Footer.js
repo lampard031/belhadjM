@@ -106,6 +106,13 @@ const Footer = () => {
                 <Mail size={20} className="text-red-400 flex-shrink-0" />
                 <span className="text-gray-400">info@ftcautomoveis.com</span>
               </div>
+              
+              <div className="flex items-center space-x-3 mt-4">
+                <div className="text-blue-400 flex-shrink-0">🌐</div>
+                <a href="https://www.ftcautomoveis.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors duration-300">
+                  www.ftcautomoveis.com
+                </a>
+              </div>
             </div>
 
             {/* Hours */}
