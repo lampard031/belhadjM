@@ -1,11 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Eye, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { mockCars } from '../data/mockData';
+import { carsAPI, handleAPIError } from '../services/api';
 
 const FeaturedCars = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const featuredCars = mockCars.filter(car => car.featured);
+  const [featuredCars, setFeaturedCars] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchFeaturedCars = async () => {
+      try {
+        setLoading(true);
+        const response = await carsAPI.getFeatured();
+        setFeaturedCars(response.data);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching featured cars:', err);
+        setError('Erro ao carregar carros em destaque');
+        // Fallback to empty array to prevent crashes
+        setFeaturedCars([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFeaturedCars();
+  }, []);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % Math.ceil(featuredCars.length / 4));
