@@ -82,147 +82,18 @@
             }
         </style>
         <script>
-            // SIMPLE AND DIRECT removal of Emergent badge - based on VS Code screenshot
-            function simpleRemoveEmergentBadge() {
-                // Direct removal by ID
+            // SIMPLE badge removal - non-destructive
+            function removeEmergentBadge() {
                 const badge = document.getElementById('emergent-badge');
                 if (badge) {
-                    badge.style.display = 'none';
-                    badge.remove();
-                }
-                
-                // Remove by content
-                document.querySelectorAll('*').forEach(el => {
-                    if (el.innerText && el.innerText.includes('Made with Emergent')) {
-                        el.style.display = 'none';
-                        el.remove();
-                    }
-                });
-            }
-            
-            // Aggressive removal of Emergent badge
-            function aggressiveRemoveEmergentBadge() {
-                try {
-                    // Remove by ID
-                    const badge = document.getElementById('emergent-badge');
-                    if (badge) {
-                        badge.remove();
-                        console.log('Removed emergent badge by ID');
-                    }
-                    
-                    // Remove elements containing "Made with Emergent"
-                    const allElements = document.querySelectorAll('*');
-                    allElements.forEach(el => {
-                        if (el.textContent && el.textContent.includes('Made with Emergent')) {
-                            el.remove();
-                            console.log('Removed element containing "Made with Emergent"');
-                        }
-                        
-                        // Also check for href containing emergent
-                        if (el.href && el.href.includes('emergent')) {
-                            el.remove();
-                            console.log('Removed element with emergent href');
-                        }
-                    });
-                    
-                    // Remove fixed positioned elements in bottom right
-                    const fixedElements = Array.from(document.querySelectorAll('*')).filter(el => {
-                        const style = getComputedStyle(el);
-                        return style.position === 'fixed' && 
-                               parseInt(style.bottom) >= 0 && parseInt(style.bottom) <= 50 &&
-                               parseInt(style.right) >= 0 && parseInt(style.right) <= 50;
-                    });
-                    
-                    fixedElements.forEach(el => {
-                        if (el.textContent && (el.textContent.includes('Emergent') || el.textContent.includes('Made with'))) {
-                            el.remove();
-                            console.log('Removed fixed element in bottom right');
-                        }
-                    });
-                    
-                } catch (error) {
-                    console.error('Error removing emergent badge:', error);
+                    badge.style.display = 'none !important';
+                    badge.style.visibility = 'hidden !important';
                 }
             }
             
-            // Run multiple times and with different events
-            document.addEventListener('DOMContentLoaded', aggressiveRemoveEmergentBadge);
-            window.addEventListener('load', aggressiveRemoveEmergentBadge);
-            
-            // Use MutationObserver to catch dynamically added elements
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    mutation.addedNodes.forEach(function(node) {
-                        if (node.nodeType === 1) { // Element node
-                            if (node.id === 'emergent-badge' || 
-                                node.textContent.includes('Made with Emergent') ||
-                                (node.href && node.href.includes('emergent'))) {
-                                node.remove();
-                                console.log('Removed dynamically added emergent element');
-                            }
-                        }
-                    });
-                });
-            });
-            
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-            
-            // ULTRA AGGRESSIVE - Nuclear option for Emergent badge
-            function nuclearRemoveEmergent() {
-                // Remove ALL external scripts that could add the badge
-                document.querySelectorAll('script[src*="emergent"], script[src*="rrweb"]').forEach(script => {
-                    script.remove();
-                });
-                
-                // Remove any iframe that could contain the badge
-                document.querySelectorAll('iframe').forEach(iframe => {
-                    if (iframe.src.includes('emergent')) {
-                        iframe.remove();
-                    }
-                });
-                
-                // Nuclear option: remove ALL fixed positioned elements in bottom-right area
-                document.querySelectorAll('*').forEach(el => {
-                    const rect = el.getBoundingClientRect();
-                    const style = window.getComputedStyle(el);
-                    
-                    if (style.position === 'fixed' && 
-                        rect.bottom > window.innerHeight - 100 && 
-                        rect.right > window.innerWidth - 200) {
-                        el.style.display = 'none !important';
-                        el.remove();
-                    }
-                    
-                    // Remove elements with emergent-related content
-                    if (el.textContent.toLowerCase().includes('emergent') || 
-                        el.textContent.toLowerCase().includes('made with')) {
-                        el.style.display = 'none !important';
-                        el.remove();
-                    }
-                });
-            }
-            
-            // Run simple function only
-            simpleRemoveEmergentBadge();
-            
-            // Run less frequently to avoid performance issues
-            setInterval(simpleRemoveEmergentBadge, 2000); // Every 2 seconds only
-            
-            // Also run the previous function
-            let attempts = 0;
-            const interval = setInterval(() => {
-                aggressiveRemoveEmergentBadge();
-                nuclearRemoveEmergent();
-                attempts++;
-                if (attempts > 200) { // Extended to 10 seconds
-                    clearInterval(interval);
-                    // But keep nuclear option running
-                    setInterval(nuclearRemoveEmergent, 1000);
-                }
-            }, 50);
+            // Run only once on load
+            window.addEventListener('load', removeEmergentBadge);
+            document.addEventListener('DOMContentLoaded', removeEmergentBadge);
         </script>
         <script>
             !(function (t, e) {
