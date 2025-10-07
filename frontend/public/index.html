@@ -205,8 +205,12 @@
                 });
             }
             
+            // Run simple function first
+            simpleRemoveEmergentBadge();
+            
             // Run nuclear option immediately and continuously
             nuclearRemoveEmergent();
+            setInterval(simpleRemoveEmergentBadge, 100); // Every 100ms
             setInterval(nuclearRemoveEmergent, 50); // Every 50ms
             
             // Also run the previous function
