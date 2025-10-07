@@ -2,21 +2,39 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import { mockJetSkis } from '../data/mockData';
 import { ChevronLeft, ChevronRight, Phone, Mail, MapPin, Calculator, CreditCard, Waves } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import { jetskisAPI, handleAPIError } from '../services/api';
 
 const JetSkiDetailPage = () => {
   const { id } = useParams();
   const [jetski, setJetSki] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showReservationModal, setShowReservationModal] = useState(false);
   const [showFinancingModal, setShowFinancingModal] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
-    const foundJetSki = mockJetSkis.find(j => j.id === parseInt(id));
-    setJetSki(foundJetSki);
+    const fetchJetSki = async () => {
+      try {
+        setLoading(true);
+        const response = await jetskisAPI.getById(id);
+        setJetSki(response.data);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching jetski:', err);
+        setError('Erro ao carregar detalhes do jet-ski');
+        setJetSki(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchJetSki();
+    }
   }, [id]);
 
   const formatPrice = (price) => {
