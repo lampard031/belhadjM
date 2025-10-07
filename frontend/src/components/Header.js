@@ -12,8 +12,15 @@ const Header = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <div className="border-2 border-white rounded-lg px-4 py-2 bg-black bg-opacity-50 hover:bg-opacity-70 transition-all duration-300">
-              <Logo size="medium" />
+            <div className="border-2 border-white rounded-lg px-4 py-3 bg-black bg-opacity-50 hover:bg-opacity-70 transition-all duration-300">
+              {/* Desktop: Large logo on left */}
+              <div className="hidden md:block">
+                <Logo size="large" />
+              </div>
+              {/* Mobile: Centered large logo */}
+              <div className="block md:hidden w-full">
+                <Logo size="xl" isMobile={true} />
+              </div>
             </div>
           </Link>
 
