@@ -12,10 +12,10 @@ const Logo = ({ size = 'medium', showWebsite = false, className = '', isMobile =
   };
 
   return (
-    <div className={`flex items-center space-x-3 ${className}`}>
+    <div className={`flex items-center ${isMobile ? 'justify-center' : 'justify-start'} space-x-3 ${className}`}>
       <img 
         src={logoUrl} 
-        alt="FTC Automóveis Logo" 
+        alt="FTC Auto Móveis Logo" 
         className={`${sizeClasses[size]} w-auto object-contain`}
       />
       {showWebsite && (
