@@ -12,22 +12,42 @@ function checkAdminAuth() {
 
 switch($method) {
     case 'GET':
-        if (strpos($request, '/featured') !== false) {
+        // Extraire l'ID de la requête si présent
+        if (preg_match('/\/cars\/(\d+)/', $request, $matches)) {
+            // Récupérer une voiture spécifique par ID
+            $id = $matches[1];
+            $stmt = $pdo->prepare("SELECT * FROM cars WHERE id = ?");
+            $stmt->execute([$id]);
+            $car = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($car) {
+                $car['images'] = json_decode($car['images'], true);
+                echo json_encode($car);
+            } else {
+                http_response_code(404);
+                echo json_encode(['error' => 'Voiture non trouvée']);
+            }
+        } else if (strpos($request, '/featured') !== false) {
             // Récupérer les voitures en vedette
             $stmt = $pdo->query("SELECT * FROM cars WHERE featured = 1 ORDER BY created_at DESC");
+            $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach($cars as &$car) {
+                $car['images'] = json_decode($car['images'], true);
+            }
+            
+            echo json_encode($cars);
         } else {
             // Récupérer toutes les voitures
             $stmt = $pdo->query("SELECT * FROM cars ORDER BY created_at DESC");
+            $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            foreach($cars as &$car) {
+                $car['images'] = json_decode($car['images'], true);
+            }
+            
+            echo json_encode($cars);
         }
-        
-        $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        // Conversion du format pour compatibilité frontend
-        foreach($cars as &$car) {
-            $car['images'] = json_decode($car['images'], true);
-        }
-        
-        echo json_encode($cars);
         break;
         
     case 'POST':
