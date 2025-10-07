@@ -73,13 +73,26 @@ const JetSkiDetailPage = () => {
     return monthlyPayment;
   };
 
-  if (!jetski) {
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-900">
+        <Header />
+        <div className="container mx-auto px-4 py-16 text-center text-white">
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-white mb-4"></div>
+          <h1 className="text-2xl font-bold">A carregar detalhes...</h1>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error || !jetski) {
     return (
       <div className="min-h-screen bg-gray-900">
         <Header />
         <div className="container mx-auto px-4 py-16 text-center text-white">
           <Waves size={64} className="mx-auto mb-4 text-gray-600" />
-          <h1 className="text-2xl font-bold mb-4">Jet-ski não encontrado</h1>
+          <h1 className="text-2xl font-bold mb-4">{error || 'Jet-ski não encontrado'}</h1>
           <Link to="/jetskis" className="text-blue-400 hover:text-blue-300">
             Voltar aos jet-skis
           </Link>
