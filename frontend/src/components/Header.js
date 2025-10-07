@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Phone, MapPin } from 'lucide-react';
+import Logo from './Logo';
 
 const Header = () => {
   const navigate = useNavigate();
