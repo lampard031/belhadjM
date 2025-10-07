@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import { mockJetSkis, mockJetSkiBrands, mockYears } from '../data/mockData';
+import { mockJetSkiBrands, mockYears } from '../data/mockData';
 import { Link } from 'react-router-dom';
 import { Eye, Heart, Filter, Waves } from 'lucide-react';
+import { jetskisAPI, handleAPIError } from '../services/api';
 
 const JetSkisPage = () => {
-  const [jetskis] = useState(mockJetSkis);
-  const [filteredJetSkis, setFilteredJetSkis] = useState(mockJetSkis);
+  const [jetskis, setJetskis] = useState([]);
+  const [filteredJetSkis, setFilteredJetSkis] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [filters, setFilters] = useState({
     brand: '',
     minPrice: '',
