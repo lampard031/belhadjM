@@ -341,8 +341,8 @@ const AdminPage = () => {
           <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Itens em Destaque</p>
-                <p className="text-2xl font-bold text-white">{featuredItems}</p>
+                <p className="text-gray-400 text-sm">Preço Médio Carros</p>
+                <p className="text-2xl font-bold text-white">{formatPrice(stats.avg_car_price)}</p>
               </div>
               <Users className="text-purple-400" size={32} />
             </div>
@@ -351,8 +351,8 @@ const AdminPage = () => {
           <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Preço Médio</p>
-                <p className="text-2xl font-bold text-white">{formatPrice(avgPrice)}</p>
+                <p className="text-gray-400 text-sm">Preço Médio Jet-Skis</p>
+                <p className="text-2xl font-bold text-white">{formatPrice(stats.avg_jetski_price)}</p>
               </div>
               <TrendingUp className="text-orange-400" size={32} />
             </div>
