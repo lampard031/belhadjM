@@ -224,14 +224,39 @@ const AdminPage = () => {
     }
   };
 
-  const handleDeleteItem = (itemId) => {
+  const handleDeleteItem = async (itemId) => {
     if (window.confirm('Tem certeza que deseja remover este veículo?')) {
-      if (activeTab === 'cars') {
-        setCars(prev => prev.filter(car => car.id !== itemId));
-      } else {
-        setJetSkis(prev => prev.filter(jetski => jetski.id !== itemId));
+      try {
+        if (activeTab === 'cars') {
+          await carsAPI.delete(itemId);
+          // Refresh cars list
+          const carsResponse = await carsAPI.getAll();
+          setCars(carsResponse.data);
+        } else {
+          await jetskisAPI.delete(itemId);
+          // Refresh jetskis list
+          const jetskisResponse = await jetskisAPI.getAll();
+          setJetSkis(jetskisResponse.data);
+        }
+
+        // Refresh stats
+        const statsResponse = await adminAPI.getStats();
+        setStats(statsResponse.data.stats);
+        
+        toast({
+          title: activeTab === 'cars' ? "Carro removido" : "Jet-ski removido",
+          description: "O veículo foi removido com sucesso do inventário",
+        });
+      } catch (error) {
+        console.error('Error deleting item:', error);
+        toast({
+          title: "Erro",
+          description: "Erro ao remover veículo. Verifique se está autenticado.",
+          variant: "destructive",
+        });
       }
-      
+    }
+  };
       toast({
         title: activeTab === 'cars' ? "Carro removido" : "Jet-ski removido",
         description: "O veículo foi removido do inventário",
