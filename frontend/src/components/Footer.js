@@ -104,9 +104,11 @@ const Footer = () => {
               
               <div className="flex items-center space-x-3 mt-4">
                 <div className="text-blue-400 flex-shrink-0">🌐</div>
-                <a href="https://www.ftcautomoveis.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors duration-300">
-                  www.ftcautomoveis.com
-                </a>
+                <div>
+                  <a href="https://www.ftcautomoveis.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors duration-300 block">
+                    www.ftcautomoveis.com
+                  </a>
+                </div>
               </div>
             </div>
 
