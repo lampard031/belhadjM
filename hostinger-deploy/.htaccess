@@ -1,0 +1,32 @@
+# Redirection pour React Router
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # API calls - rediriger vers PHP
+  RewriteRule ^api/cars/?$ api/cars.php [L,QSA]
+  RewriteRule ^api/jetskis/?$ api/jetskis.php [L,QSA]
+  RewriteRule ^api/admin/?$ api/admin.php [L,QSA]
+  
+  # React Router - toutes les autres routes vers index.html
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Configuration des en-têtes CORS
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
+# Compression et cache pour les performances
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+</IfModule>
