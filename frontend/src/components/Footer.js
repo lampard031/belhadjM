@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="border-2 border-white rounded-lg px-4 py-3 inline-block mb-6 bg-black bg-opacity-50">
-              <Logo size="medium" />
+              <Logo size="large" />
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
               O seu concessionário de confiança em Arcozelo. Oferecemos os melhores carros usados e jet-skis 
