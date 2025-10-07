@@ -269,14 +269,30 @@ const AdminPage = () => {
     setShowEditModal(true);
   };
 
-  // Statistics
-  const totalCars = cars.length;
-  const totalJetSkis = jetskis.length;
-  const totalValue = cars.reduce((sum, car) => sum + car.price, 0) + jetskis.reduce((sum, jetski) => sum + jetski.price, 0);
-  const featuredItems = cars.filter(car => car.featured).length + jetskis.filter(jetski => jetski.featured).length;
-  const avgPrice = totalValue / (totalCars + totalJetSkis) || 0;
-
   const currentItems = activeTab === 'cars' ? cars : jetskis;
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-900">
+        {/* Header */}
+        <div className="bg-gray-800 border-b border-gray-700">
+          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div className="flex items-center space-x-4">
+              <div className="border-2 border-white rounded px-3 py-2 bg-black bg-opacity-50">
+                <Logo size="medium" />
+              </div>
+              <h2 className="text-xl text-white">Painel de Administração</h2>
+            </div>
+          </div>
+        </div>
+
+        <div className="container mx-auto px-4 py-16 text-center">
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-white mb-4"></div>
+          <p className="text-white text-lg">A carregar painel administrativo...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -306,7 +322,7 @@ const AdminPage = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-gray-400 text-sm">Carros / Jet-Skis</p>
-                <p className="text-2xl font-bold text-white">{totalCars} / {totalJetSkis}</p>
+                <p className="text-2xl font-bold text-white">{stats.cars_count} / {stats.jetskis_count}</p>
               </div>
               <Car className="text-blue-400" size={32} />
             </div>
@@ -315,8 +331,8 @@ const AdminPage = () => {
           <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-sm">Valor Total</p>
-                <p className="text-2xl font-bold text-white">{formatPrice(totalValue)}</p>
+                <p className="text-gray-400 text-sm">Total Veículos</p>
+                <p className="text-2xl font-bold text-white">{stats.total_vehicles}</p>
               </div>
               <DollarSign className="text-green-400" size={32} />
             </div>
