@@ -43,14 +43,8 @@ const AdminLogin = () => {
       <div className="bg-gray-800 rounded-lg shadow-2xl p-8 w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="border-2 border-white rounded-lg px-4 py-2 inline-block mb-4">
-            <div className="flex items-center space-x-2">
-              <span className="text-xl">🚗</span>
-              <div>
-                <h1 className="text-xl font-bold tracking-wider text-white">FTC AUTOMÓVEIS</h1>
-                <p className="text-xs opacity-75 text-gray-300">www.ftcautomoveis.com</p>
-              </div>
-            </div>
+          <div className="border-2 border-white rounded-lg px-4 py-3 inline-block mb-4 bg-black bg-opacity-50">
+            <Logo size="medium" showWebsite={true} />
           </div>
           <h2 className="text-2xl font-bold text-white">Painel de Administração</h2>
           <p className="text-gray-400 mt-2">Faça login para gerir o inventário</p>
