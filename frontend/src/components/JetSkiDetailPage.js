@@ -248,13 +248,14 @@ const JetSkiDetailPage = () => {
             <div className="text-center text-white">
               <Phone className="mx-auto mb-3 text-green-400" size={32} />
               <h4 className="font-bold mb-2">Ligue-nos</h4>
-              <p className="text-gray-300">+351 923 575 015</p>
+              <p className="text-gray-300">📱 +351 923 575 015</p>
+              <p className="text-gray-300 text-sm">☎️ +351 223 176 692</p>
             </div>
             
             <div className="text-center text-white">
               <Mail className="mx-auto mb-3 text-blue-400" size={32} />
               <h4 className="font-bold mb-2">Email</h4>
-              <p className="text-gray-300">ftcautomoveis@gmail.com</p>
+              <p className="text-gray-300">info@ftcautomoveis.com</p>
             </div>
             
             <div className="text-center text-white">
