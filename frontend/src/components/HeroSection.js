@@ -36,13 +36,12 @@ const HeroSection = () => {
       </div>
 
       {/* Dealership Badge */}
-      <div className="absolute bottom-20 right-8 bg-black bg-opacity-70 text-white px-6 py-4 rounded-lg">
+      <div className="absolute bottom-20 right-8 bg-black bg-opacity-80 text-white px-6 py-4 rounded-lg">
         <div className="text-center">
-          <div className="border border-white rounded px-3 py-1 mb-2 flex items-center justify-center space-x-2">
-            <span className="text-lg">🚗</span>
-            <span className="text-sm font-bold">FTC AUTOMÓVEIS</span>
+          <div className="mb-3">
+            <Logo size="small" showWebsite={false} />
           </div>
-          <p className="text-xs">Financiamento 100% aprovado</p>
+          <p className="text-xs mb-2">Financiamento 100% aprovado</p>
           <p className="text-sm font-bold">📱 +351 923 575 015</p>
           <p className="text-xs opacity-75">☎️ +351 223 176 692</p>
         </div>
