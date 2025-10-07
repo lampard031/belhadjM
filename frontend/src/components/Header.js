@@ -19,7 +19,7 @@ const Header = () => {
         </div>
         
         {/* Desktop Layout - Logo on left */}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center min-h-[60px]">
           {/* Desktop Logo */}
           <div className="hidden md:block">
             <Link to="/" className="flex items-center">
