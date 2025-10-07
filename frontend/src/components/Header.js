@@ -13,7 +13,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <div className="border-2 border-white rounded-lg px-4 py-2 bg-black bg-opacity-50 hover:bg-opacity-70 transition-all duration-300">
-              <Logo size="medium" showWebsite={true} />
+              <Logo size="medium" />
             </div>
           </Link>
 
