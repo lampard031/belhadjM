@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star } from 'lucide-react';
+import Logo from './Logo';
 
 const AboutSection = () => {
   return (
