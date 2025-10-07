@@ -33,6 +33,27 @@ const JetSkisPage = () => {
     return new Intl.NumberFormat('pt-PT').format(hours) + ' horas';
   };
 
+  useEffect(() => {
+    const fetchJetskis = async () => {
+      try {
+        setLoading(true);
+        const response = await jetskisAPI.getAll();
+        setJetskis(response.data);
+        setFilteredJetSkis(response.data);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching jetskis:', err);
+        setError('Erro ao carregar jet-skis');
+        setJetskis([]);
+        setFilteredJetSkis([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJetskis();
+  }, []);
+
   const applyFilters = () => {
     let filtered = jetskis.filter(jetski => {
       return (
@@ -46,9 +67,9 @@ const JetSkisPage = () => {
     setFilteredJetSkis(filtered);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     applyFilters();
-  }, [filters]);
+  }, [filters, jetskis]);
 
   return (
     <div className="min-h-screen bg-gray-900">
