@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTC Automóveis - Experiência Superior em Automóveis e Jet-Skis</title>
+    <meta name="description" content="FTC Automóveis oferece a melhor experiência em automóveis e jet-skis em Portugal. Crédito disponível, 1ª, 2ª, 3ª oportunidade!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Splash Loading -->
+    <div id="splash" class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <div class="logo-modern">
+                    <div class="logo-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-main">FTC</span>
+                        <span class="logo-sub">AUTOMÓVEIS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="splash-tagline">COMPRA E VENDA</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-modern">
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- Logo -->
+                <div class="nav-logo">
+                    <div class="logo-modern">
+                        <div class="logo-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-main">FTC</span>
+                            <span class="logo-sub">AUTOMÓVEIS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Menu -->
+                <div class="nav-menu" id="navMenu">
+                    <a href="#inicio" class="nav-link active">Início</a>
+                    <a href="#carros" class="nav-link">Carros</a>
+                    <a href="#jetskis" class="nav-link">Jet-Skis</a>
+                    <a href="#novidades" class="nav-link">Novidades</a>
+                    <a href="#financiamento" class="nav-link">Financiamento</a>
+                    <a href="#contactar" class="nav-link">Contactar</a>
+                    <a href="#admin" class="nav-link nav-admin">Admin</a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Hero Section -->
+        <section id="inicio" class="hero-section active-section">
+            <div class="hero-background">
+                <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1920&h=1080&fit=crop');">
+                    <div class="hero-overlay"></div>
+                </div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&h=1080&fit=crop');">
+                    <div class="hero-overlay"></div>
+                </div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1920&h=1080&fit=crop');">
+                    <div class="hero-overlay"></div>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="title-line">VIVA A</span>
+                        <span class="title-line">EXPERIÊNCIA</span>
+                        <span class="title-line">SUPERIOR</span>
+                        <span class="title-accent">COM FTC AUTOMÓVEIS</span>
+                    </h1>
+                    <p class="hero-subtitle">1ª, 2ª, 3ª oportunidade de crédito!</p>
+                    <div class="hero-buttons">
+                        <button class="btn-hero btn-primary" onclick="showSection('carros')">
+                            <i class="fas fa-car"></i>
+                            VER CARROS
+                        </button>
+                        <button class="btn-hero btn-secondary" onclick="showSection('jetskis')">
+                            <i class="fas fa-ship"></i>
+                            VER JET-SKIS
+                        </button>
+                        <button class="btn-hero btn-accent" onclick="showSection('financiamento')">
+                            <i class="fas fa-calculator"></i>
+                            CANDIDATAR AGORA!
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Navigation Dots -->
+            <div class="hero-navigation">
+                <button class="hero-dot active" onclick="currentSlide(1)"></button>
+                <button class="hero-dot" onclick="currentSlide(2)"></button>
+                <button class="hero-dot" onclick="currentSlide(3)"></button>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-text">Scroll</div>
+                <div class="scroll-arrow">↓</div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="fade-up">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Garantia Total</h3>
+                        <p>Todos os nossos veículos com garantia e histórico verificado</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <h3>Melhor Preço</h3>
+                        <p>Preços competitivos e condições de pagamento flexíveis</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Atendimento Premium</h3>
+                        <p>Equipa especializada para o acompanhar em todo o processo</p>
+                    </div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Resposta Rápida</h3>
+                        <p>Aprovação de crédito em menos de 24 horas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cars Section -->
+        <section id="carros" class="vehicles-section">
+            <div class="section-header">
+                <div class="container">
+                    <h2 class="section-title">
+                        <span class="title-number">01</span>
+                        <span class="title-text">NOSSOS CARROS</span>
+                    </h2>
+                    <p class="section-subtitle">Descubra a nossa seleção premium de automóveis</p>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-modern">
+                <div class="container">
+                    <div class="filters-row">
+                        <select class="filter-select" id="carBrandFilter">
+                            <option value="">Marca</option>
+                        </select>
+                        <select class="filter-select" id="carYearFilter">
+                            <option value="">Ano</option>
+                        </select>
+                        <select class="filter-select" id="carFuelFilter">
+                            <option value="">Combustível</option>
+                            <option value="Gasolina">Gasolina</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Híbrido">Híbrido</option>
+                            <option value="Elétrico">Elétrico</option>
+                        </select>
+                        <input type="number" class="filter-input" id="carMaxPriceFilter" placeholder="Preço máximo">
+                        <button class="filter-btn" onclick="filterCars()">
+                            <i class="fas fa-search"></i>
+                            FILTRAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cars Grid -->
+            <div class="container">
+                <div class="vehicles-grid" id="carsGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Jet-Skis Section -->
+        <section id="jetskis" class="vehicles-section">
+            <div class="section-header">
+                <div class="container">
+                    <h2 class="section-title">
+                        <span class="title-number">02</span>
+                        <span class="title-text">JET-SKIS</span>
+                    </h2>
+                    <p class="section-subtitle">Aventura aquática com a melhor qualidade</p>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-modern">
+                <div class="container">
+                    <div class="filters-row">
+                        <select class="filter-select" id="jetskiBrandFilter">
+                            <option value="">Marca</option>
+                            <option value="Yamaha">Yamaha</option>
+                            <option value="Sea-Doo">Sea-Doo</option>
+                            <option value="Kawasaki">Kawasaki</option>
+                        </select>
+                        <select class="filter-select" id="jetskiYearFilter">
+                            <option value="">Ano</option>
+                        </select>
+                        <input type="number" class="filter-input" id="jetskiMaxHoursFilter" placeholder="Horas máximas">
+                        <input type="number" class="filter-input" id="jetskiMaxPriceFilter" placeholder="Preço máximo">
+                        <button class="filter-btn" onclick="filterJetskis()">
+                            <i class="fas fa-search"></i>
+                            FILTRAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jet-Skis Grid -->
+            <div class="container">
+                <div class="vehicles-grid" id="jetskisGrid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Novidades Section -->
+        <section id="novidades" class="news-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-number">03</span>
+                        <span class="title-text">NOVIDADES</span>
+                    </h2>
+                    <p class="section-subtitle">Últimas chegadas ao nosso stand</p>
+                </div>
+
+                <div class="news-grid" id="featuredVehicles">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Financing Section -->
+        <section id="financiamento" class="financing-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-number">04</span>
+                        <span class="title-text">FINANCIAMENTO</span>
+                    </h2>
+                    <p class="section-subtitle">Simule o seu crédito automóvel</p>
+                </div>
+
+                <div class="financing-calculator">
+                    <div class="calculator-card">
+                        <div class="calculator-header">
+                            <h3>Simulador de Crédito</h3>
+                            <p>Calcule as suas prestações mensais</p>
+                        </div>
+
+                        <div class="calculator-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Valor do Veículo</label>
+                                    <div class="input-group">
+                                        <input type="number" id="vehiclePrice" placeholder="25000">
+                                        <span class="input-suffix">€</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Entrada</label>
+                                    <div class="input-group">
+                                        <input type="number" id="downPayment" placeholder="5000">
+                                        <span class="input-suffix">€</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Prazo</label>
+                                    <select id="loanTerm">
+                                        <option value="12">12 meses</option>
+                                        <option value="24">24 meses</option>
+                                        <option value="36">36 meses</option>
+                                        <option value="48">48 meses</option>
+                                        <option value="60" selected>60 meses</option>
+                                        <option value="72">72 meses</option>
+                                        <option value="84">84 meses</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button class="calc-btn" onclick="calculateFinancing()">
+                                        <i class="fas fa-calculator"></i>
+                                        CALCULAR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="calculator-results" id="financingResults">
+                            <div class="result-grid">
+                                <div class="result-item">
+                                    <span class="result-label">Valor a Financiar</span>
+                                    <span class="result-value" id="amountToFinance">-</span>
+                                </div>
+                                <div class="result-item highlight">
+                                    <span class="result-label">Prestação Mensal</span>
+                                    <span class="result-value" id="monthlyPayment">-</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">Total a Pagar</span>
+                                    <span class="result-value" id="totalPayment">-</span>
+                                </div>
+                            </div>
+                            <div class="result-note">
+                                TAN: 8,5% | TAEG: 10,2% (exemplo ilustrativo)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contactar" class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-number">05</span>
+                        <span class="title-text">CONTACTAR</span>
+                    </h2>
+                    <p class="section-subtitle">Estamos aqui para o ajudar</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Telefone</h4>
+                                <p>+351 923 575 015</p>
+                                <p>+351 223 176 692</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>info@ftcautomoveis.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Localização</h4>
+                                <p>Rua das Pedrinhas Brancas, 682</p>
+                                <p>Arcozelo VNG</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Horário</h4>
+                                <p>Segunda - Sábado</p>
+                                <p>9h - 12h | 14h - 18h</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3>Envie-nos uma mensagem</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" placeholder="Nome" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" placeholder="Telefone">
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Mensagem" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="contact-submit">
+                                <i class="fas fa-paper-plane"></i>
+                                ENVIAR MENSAGEM
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Section -->
+        <section id="admin" class="admin-section">
+            <div class="container">
+                <div class="admin-container">
+                    <!-- Login Form -->
+                    <div class="admin-login" id="adminLogin">
+                        <div class="admin-login-card">
+                            <div class="admin-header">
+                                <div class="admin-logo">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <h2>Painel Administrativo</h2>
+                                <p>Acesso restrito a administradores</p>
+                            </div>
+
+                            <form id="adminLoginForm">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="adminUsername" placeholder="Utilizador" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <i class="fas fa-lock"></i>
+                                        <input type="password" id="adminPassword" placeholder="Palavra-passe" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="admin-login-btn">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    ENTRAR
+                                </button>
+                            </form>
+
+                            <div class="admin-demo">
+                                <small>Demo: admin / admin123</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin Dashboard -->
+                    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+                        <div class="dashboard-header">
+                            <h2>Painel Administrativo</h2>
+                            <button class="logout-btn" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Sair
+                            </button>
+                        </div>
+
+                        <div class="dashboard-stats" id="dashboardStats">
+                            <!-- Populated by JavaScript -->
+                        </div>
+
+                        <div class="dashboard-tabs">
+                            <button class="tab-btn active" onclick="showAdminTab('cars')">
+                                <i class="fas fa-car"></i>
+                                Carros
+                            </button>
+                            <button class="tab-btn" onclick="showAdminTab('jetskis')">
+                                <i class="fas fa-ship"></i>
+                                Jet-Skis
+                            </button>
+                        </div>
+
+                        <div class="dashboard-content" id="adminContent">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Vehicle Detail Modal -->
+    <div class="modal-overlay" id="vehicleModal">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-content" id="vehicleDetails">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-modern">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <div class="logo-modern">
+                                <div class="logo-icon">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <div class="logo-text">
+                                    <span class="logo-main">FTC</span>
+                                    <span class="logo-sub">AUTOMÓVEIS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="footer-description">
+                            A sua concessionária de confiança para automóveis e jet-skis de qualidade superior.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Serviços</h4>
+                        <ul class="footer-links">
+                            <li><a href="#carros">Venda de Carros</a></li>
+                            <li><a href="#jetskis">Venda de Jet-Skis</a></li>
+                            <li><a href="#financiamento">Financiamento</a></li>
+                            <li><a href="#contactar">Seguros</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Contactos</h4>
+                        <div class="footer-contact">
+                            <p><i class="fas fa-phone"></i> +351 923 575 015</p>
+                            <p><i class="fas fa-envelope"></i> info@ftcautomoveis.com</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Rua das Pedrinhas Brancas, 682<br>Arcozelo VNG</p>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>Horários</h4>
+                        <div class="footer-schedule">
+                            <p><strong>Segunda - Sábado</strong></p>
+                            <p>9h - 12h | 14h - 18h</p>
+                            <p><strong>Domingo</strong></p>
+                            <p>Encerrado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 FTC Automóveis. Todos os direitos reservados.</p>
+                    <p>Desenvolvido com excelência para a melhor experiência.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    
+    <!-- Remove Emergent badges -->
+    <script>
+        setInterval(() => {
+            document.querySelectorAll('div[style*="position: fixed"][style*="bottom"][style*="right"], .emergent-badge, [class*="emergent"], [id*="emergent"]').forEach(el => {
+                if (el.textContent.includes('Made with') || el.textContent.includes('Emergent')) {
+                    el.remove();
+                }
+            });
+        }, 500);
+    </script>
+</body>
+</html>
