@@ -163,6 +163,7 @@ if ($resource === 'promotions' && $_SERVER['REQUEST_METHOD'] === 'GET') {
     }
     $row['image_url'] = $img;    // conservé
     $row['photo']     = $img;    // alias de compat éventuelle
+    $row['status']    = 'active'; // Ajouter le statut
 
     $out[] = $row;
   }
