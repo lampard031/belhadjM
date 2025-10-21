@@ -357,14 +357,23 @@
       return;
     }
     
+    console.log('🔄 renderPromotions appelé avec:', promos.length, 'promotions');
+    console.log('📍 Index actuel:', currentIndex);
+    
     promotionsData = promos;
     const p = promos[currentIndex];
+    
+    console.log('📦 Promotion affichée:', p);
+    
     const title = pick(p, ['title_fr','title','name']) || 'Promotion';
     const desc  = pick(p, ['description_fr','description','desc','text']);
     const statusKey = normalizeStatus(p.status || p.state || p.isActive || p.active);
     const statusTxt = statusKey === 'upcoming' ? 'À venir' : 'En cours';
     const dates = (p.start_date && p.end_date) ? `${p.start_date} — ${p.end_date}` : '';
     const img   = pick(p, ['image_url','image','photo']);
+    
+    console.log('🖼️ Image URL:', img);
+    console.log('🎯 Afficher flèches?', promos.length > 1);
 
     // Générer les dots de pagination
     const dots = promos.map((_, idx) => 
@@ -465,6 +474,10 @@
 
   showLoading();
   fetchFirstWorking()
-    .then(renderPromotions)
+    .then(data => {
+      console.log('🎰 Promotions reçues:', data);
+      console.log('📊 Nombre de promotions:', data.length);
+      renderPromotions(data);
+    })
     .catch(() => renderError('Impossible de charger les promotions.'));
 })();
