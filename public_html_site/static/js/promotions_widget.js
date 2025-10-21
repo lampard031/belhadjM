@@ -34,16 +34,52 @@
         padding: 56px 0;
         background: linear-gradient(180deg,#0b0e13 0%, #111827 100%);
       }
-      /* Cadre visible */
-      #${WIDGET_ID} .promo-frame {
+      
+      /* Titre principal de la section */
+      #${WIDGET_ID} .section-title {
+        text-align: center;
+        font-size: 48px;
+        font-weight: 800;
+        color: #fff;
+        margin: 0 0 16px 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      /* Badge statut centré */
+      #${WIDGET_ID} .promo-status-top {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+      #${WIDGET_ID} .promo-status {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 999px;
+        font-weight: 800;
+        font-size: 14px;
+        color: #0b0f14;
+        background: #10b981;
+        text-transform: uppercase;
+      }
+      #${WIDGET_ID} .promo-status.upcoming { background:#f59e0b; }
+      
+      /* Conteneur du carousel */
+      #${WIDGET_ID} .carousel-container {
+        position: relative;
         max-width: 1200px;
         margin: 0 auto;
+        padding: 0 60px;
+      }
+      
+      /* Cadre visible */
+      #${WIDGET_ID} .promo-frame {
         padding: 24px;
-        border: 2px solid rgba(234,179,8,.28); /* doré translucide */
+        border: 2px solid rgba(234,179,8,.28);
         border-radius: 24px;
         background: rgba(255,255,255,.03);
         box-shadow: 0 20px 60px rgba(0,0,0,.55);
       }
+      
       /* Grille contenu */
       #${WIDGET_ID} .promo-grid {
         display: grid;
@@ -51,54 +87,149 @@
         gap: 28px;
         align-items: center;
       }
-      /* Image */
+      
+      /* Image cliquable */
       #${WIDGET_ID} .promo-img {
         width: 100%;
         height: 460px;
         border-radius: 16px;
         object-fit: cover;
         background: #0b0e13;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
-      /* En-tête badges */
-      #${WIDGET_ID} .promo-badges {
+      #${WIDGET_ID} .promo-img:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 30px rgba(234,179,8,.4);
+      }
+      
+      /* Flèches de navigation */
+      #${WIDGET_ID} .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(234,179,8,.9);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: #0b0e13;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s ease;
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin-bottom: 10px;
+        justify-content: center;
       }
-      #${WIDGET_ID} .promo-badge {
-        display: inline-block;
-        padding: 6px 12px;
-        border-radius: 999px;
-        background: #1f2937;
-        color: #ffe08a;
-        font-weight: 700;
-        font-size: 14px;
-        border: 1px solid rgba(234,179,8,.25);
+      #${WIDGET_ID} .carousel-arrow:hover {
+        background: rgba(234,179,8,1);
+        transform: translateY(-50%) scale(1.1);
       }
-      #${WIDGET_ID} .promo-status {
-        display: inline-block;
-        padding: 6px 12px;
-        border-radius: 999px;
-        font-weight: 800;
-        font-size: 14px;
-        color: #0b0f14;
-        background: #10b981; /* En cours */
+      #${WIDGET_ID} .carousel-arrow.prev { left: 0; }
+      #${WIDGET_ID} .carousel-arrow.next { right: 0; }
+      
+      /* Indicateurs de pagination */
+      #${WIDGET_ID} .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 24px;
       }
-      #${WIDGET_ID} .promo-status.upcoming { background:#f59e0b; } /* À venir */
+      #${WIDGET_ID} .carousel-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255,255,255,.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      #${WIDGET_ID} .carousel-dot.active {
+        background: rgba(234,179,8,1);
+        width: 32px;
+        border-radius: 6px;
+      }
+      
+      /* Contenu texte */
       #${WIDGET_ID} .promo-title {
         margin: 0 0 12px 0;
         font-size: 32px;
         line-height: 1.15;
         color: #fff;
+        font-weight: 700;
       }
-      #${WIDGET_ID} .promo-dates { opacity: .85; margin: 0 0 6px 0; }
-      #${WIDGET_ID} .promo-desc  { opacity: .9;  margin: 0 0 16px 0; }
+      #${WIDGET_ID} .promo-dates { 
+        opacity: .85; 
+        margin: 0 0 6px 0; 
+        color: #ffe08a;
+      }
+      #${WIDGET_ID} .promo-desc  { 
+        opacity: .9;  
+        margin: 0 0 16px 0; 
+        line-height: 1.6;
+      }
       #${WIDGET_ID} .promo-cta {
         background: linear-gradient(135deg,#e11d48,#ef4444);
-        border: none; border-radius: 10px; color: #fff; font-weight: 800;
-        padding: 12px 18px; cursor: pointer;
+        border: none; 
+        border-radius: 10px; 
+        color: #fff; 
+        font-weight: 800;
+        padding: 14px 28px; 
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
       }
+      #${WIDGET_ID} .promo-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(225,29,72,.4);
+      }
+      
+      /* Lightbox */
+      #${WIDGET_ID} .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.95);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      #${WIDGET_ID} .lightbox.active { display: flex; }
+      #${WIDGET_ID} .lightbox-img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 12px;
+      }
+      #${WIDGET_ID} .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 40px;
+        color: #fff;
+        cursor: pointer;
+        background: rgba(234,179,8,.8);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+      #${WIDGET_ID} .lightbox-close:hover {
+        background: rgba(234,179,8,1);
+        transform: rotate(90deg);
+      }
+      
       /* Loading & erreur */
       #${WIDGET_ID} .promo-loading,
       #${WIDGET_ID} .promo-error {
@@ -108,9 +239,28 @@
         background: rgba(239,68,68,.12); border: 1px solid rgba(239,68,68,.35);
         border-radius: 12px; padding: 16px;
       }
+      
+      /* Responsive Mobile */
       @media (max-width: 1000px) {
-        #${WIDGET_ID} .promo-grid { grid-template-columns: 1fr; }
-        #${WIDGET_ID} .promo-img  { height: 260px; }
+        #${WIDGET_ID} .section-title {
+          font-size: 36px;
+        }
+        #${WIDGET_ID} .carousel-container {
+          padding: 0 20px;
+        }
+        #${WIDGET_ID} .promo-grid { 
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        #${WIDGET_ID} .promo-img { height: 300px; }
+        #${WIDGET_ID} .promo-title { font-size: 24px; }
+        #${WIDGET_ID} .carousel-arrow {
+          width: 40px;
+          height: 40px;
+          font-size: 20px;
+        }
+        #${WIDGET_ID} .carousel-arrow.prev { left: -10px; }
+        #${WIDGET_ID} .carousel-arrow.next { right: -10px; }
       }
     `;
     document.head.appendChild(s);
