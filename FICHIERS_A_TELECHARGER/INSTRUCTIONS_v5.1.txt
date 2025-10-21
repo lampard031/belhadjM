@@ -1,0 +1,97 @@
+═══════════════════════════════════════════════════════════════
+  MISE À JOUR - Corrections Flèches + Images
+  Casino TRIPLE 7 - v5.1
+═══════════════════════════════════════════════════════════════
+
+📁 FICHIERS À TÉLÉCHARGER ET UPLOADER:
+─────────────────────────────────────────────────────────────
+
+1️⃣ promotions_widget.js (16KB)
+   → Chemin: /public_html/static/js/promotions_widget.js
+   
+2️⃣ promotions.php (2.8KB)
+   → Chemin: /public_html/api/promotions.php
+
+
+🔧 CORRECTIONS APPORTÉES:
+─────────────────────────────────────────────────────────────
+
+✅ API promotions.php:
+   - Filtre maintenant seulement les promotions ACTIVES (isActive=1)
+   - Tri par date de début (plus récent d'abord)
+   - Correction du mapping des images
+
+✅ Widget JavaScript:
+   - Ajout de logs de debug dans la console
+   - Meilleur détection du nombre de promotions
+   - Affichage forcé des flèches si 2+ promotions
+
+
+🔍 DEBUGGING:
+─────────────────────────────────────────────────────────────
+
+Après upload, ouvrez votre site et:
+1. Appuyez sur F12 (ouvrir console développeur)
+2. Rafraîchissez la page (CTRL+F5)
+3. Regardez dans la console, vous verrez:
+   
+   🎰 Promotions reçues: [...]
+   📊 Nombre de promotions: 2
+   🔄 renderPromotions appelé avec: 2 promotions
+   📍 Index actuel: 0
+   📦 Promotion affichée: {...}
+   🖼️ Image URL: https://...
+   🎯 Afficher flèches? true
+
+4. Envoyez-moi ces informations si ça ne marche toujours pas!
+
+
+📤 ÉTAPES D'INSTALLATION:
+─────────────────────────────────────────────────────────────
+
+FICHIER 1: promotions_widget.js
+1. Hostinger → Gestionnaire de fichiers
+2. Naviguez: public_html → static → js
+3. Remplacez: promotions_widget.js
+4. Permissions: 644
+
+FICHIER 2: promotions.php  
+1. Hostinger → Gestionnaire de fichiers
+2. Naviguez: public_html → api
+3. Remplacez: promotions.php
+4. Permissions: 644
+
+
+🧪 TESTER:
+─────────────────────────────────────────────────────────────
+
+1. Videz le cache (CTRL + SHIFT + F5)
+2. Vérifiez que vous voyez maintenant:
+   ✅ Les 2 promotions actives uniquement
+   ✅ Les flèches gauche/droite apparaissent
+   ✅ Les bonnes images s'affichent
+   ✅ Navigation fonctionne entre les 2 promos
+   ✅ Les dots de pagination (2 points)
+
+
+⚠️ SI LES FLÈCHES NE S'AFFICHENT TOUJOURS PAS:
+─────────────────────────────────────────────────────────────
+
+Vérifiez dans votre admin panel:
+- Avez-vous bien 2 promotions avec isActive = 1 ?
+- Les images ont-elles des URLs valides?
+- Les dates start_date et end_date sont-elles remplies?
+
+
+💡 ASTUCE:
+─────────────────────────────────────────────────────────────
+
+Si vous voulez désactiver une promotion sans la supprimer:
+1. Allez dans l'admin panel
+2. Modifiez directement dans la BD: isActive = 0
+3. Elle n'apparaîtra plus sur le site
+
+
+═══════════════════════════════════════════════════════════════
+  Version: 5.1 - Corrections Debug
+═══════════════════════════════════════════════════════════════
