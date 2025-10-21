@@ -457,19 +457,50 @@
   observer.observe(document.body, { childList: true, subtree: true });
   setTimeout(() => { if (!widget.__placed) { if (!placeAfterHeroOrRoot()) placeAfterRoot(); observer.disconnect(); } }, 2000);
 
-  // Fetch avec fallback
+  // Fetch avec fallback et debug amélioré
   async function fetchFirstWorking() {
+    const errors = [];
+    
     for (const url of ENDPOINTS) {
       try {
-        const r = await fetch(url, { credentials: 'same-origin' });
-        if (!r.ok) continue;
+        console.log('🔍 Essai URL:', url);
+        const r = await fetch(url, { 
+          credentials: 'same-origin',
+          cache: 'no-cache'
+        });
+        
+        console.log('📡 Réponse status:', r.status, r.statusText);
+        
+        if (!r.ok) {
+          errors.push(`${url}: HTTP ${r.status}`);
+          continue;
+        }
+        
         const data = await r.json();
+        console.log('📦 Données brutes reçues:', data);
+        
         const arr = normalizeArray(data);
-        if (url === ENDPOINTS[0]) return arr; // JSON local — même vide accepté
+        console.log('✅ Promotions normalisées:', arr.length, 'items');
+        
+        // Debug détaillé de chaque promotion
+        arr.forEach((p, idx) => {
+          console.log(`  [${idx}] ${p.title || 'Sans titre'}`);
+          console.log(`      Image: ${p.image_url || 'AUCUNE'}`);
+          console.log(`      Status: ${p.status || 'N/A'}`);
+        });
+        
+        if (url === ENDPOINTS[0]) return arr; // JSON local accepté même vide
         if (arr.length) return arr;
-      } catch (_) {}
+        
+        errors.push(`${url}: 0 promotions`);
+      } catch (e) {
+        console.error('❌ Erreur sur', url, ':', e);
+        errors.push(`${url}: ${e.message}`);
+      }
     }
-    throw new Error('Aucun endpoint disponible');
+    
+    console.error('🚨 Tous les endpoints ont échoué:', errors);
+    throw new Error('Aucun endpoint disponible: ' + errors.join('; '));
   }
 
   showLoading();
