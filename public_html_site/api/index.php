@@ -169,11 +169,13 @@ if ($resource === 'promotions' && $_SERVER['REQUEST_METHOD'] === 'GET') {
   }
 
   if (isset($_GET['flat']) && $_GET['flat'] == '1') {
-    echo json_encode($out, JSON_UNESCAPED_SLASHES); 
+    // FORCER un vrai tableau avec array_values()
+    echo json_encode(array_values($out), JSON_UNESCAPED_SLASHES); 
     exit;
   }
 
-  echo json_encode(['promotions' => $out], JSON_UNESCAPED_SLASHES); 
+  // Pour format non-flat aussi
+  echo json_encode(['promotions' => array_values($out)], JSON_UNESCAPED_SLASHES); 
   exit;
 }
 
