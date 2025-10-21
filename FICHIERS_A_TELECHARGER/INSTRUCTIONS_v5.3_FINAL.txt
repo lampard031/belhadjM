@@ -1,0 +1,208 @@
+═══════════════════════════════════════════════════════════════
+  🔧 CORRECTION FINALE v5.3 - Problème Base de Données
+  Casino TRIPLE 7
+═══════════════════════════════════════════════════════════════
+
+🎯 PROBLÈME IDENTIFIÉ:
+L'API ne récupère pas correctement les données de la BD
+
+═══════════════════════════════════════════════════════════════
+
+📥 FICHIERS À TÉLÉCHARGER (4 fichiers)
+─────────────────────────────────────────────────────────────
+
+Dans /app/FICHIERS_A_TELECHARGER/:
+
+1. ✅ test_db.php
+   → Pour tester la connexion BD
+   
+2. ✅ promotions_v5.3.php
+   → API corrigée avec debug
+   
+3. ✅ promotions_widget_v5.3.js
+   → Widget avec logs détaillés
+
+═══════════════════════════════════════════════════════════════
+
+📤 OÙ UPLOADER (Hostinger)
+─────────────────────────────────────────────────────────────
+
+1. test_db.php
+   → Upload dans: /public_html/api/test_db.php
+   
+2. promotions_v5.3.php
+   → RENOMMER en: promotions.php
+   → Remplacer: /public_html/api/promotions.php
+   
+3. promotions_widget_v5.3.js
+   → RENOMMER en: promotions_widget.js
+   → Remplacer: /public_html/static/js/promotions_widget.js
+
+═══════════════════════════════════════════════════════════════
+
+🧪 ÉTAPE 1: TESTER LA CONNEXION BD
+─────────────────────────────────────────────────────────────
+
+1. Uploadez test_db.php dans /public_html/api/
+
+2. Ouvrez dans votre navigateur:
+   https://triple7casino.ca/api/test_db.php
+
+3. Vous devriez voir:
+   {
+     "status": "✅ SUCCESS",
+     "connection": "✅ Connecté à: u498246000_triple7casino",
+     "tables": ["winners", "events", "promotions"],
+     "total_promotions": 2,
+     "active_promotions": 2,
+     "promotions_data": [
+       {
+         "id": 1,
+         "title": "Votre titre",
+         "image_url": "/uploads/...",
+         "isActive": 1,
+         ...
+       }
+     ]
+   }
+
+4. ✅ SI TOUT EST BON: Passez à l'étape 2
+   ❌ SI ERREUR: Envoyez-moi le résultat JSON complet
+
+═══════════════════════════════════════════════════════════════
+
+🔄 ÉTAPE 2: REMPLACER LES FICHIERS
+─────────────────────────────────────────────────────────────
+
+1. Remplacez promotions.php par promotions_v5.3.php
+2. Remplacez promotions_widget.js par promotions_widget_v5.3.js
+
+═══════════════════════════════════════════════════════════════
+
+🧪 ÉTAPE 3: TESTER L'API PROMOTIONS
+─────────────────────────────────────────────────────────────
+
+Ouvrez dans votre navigateur:
+https://triple7casino.ca/api/promotions.php?flat=1
+
+Vous devriez voir:
+[
+  {
+    "id": 1,
+    "title": "Titre Promo 1",
+    "description": "...",
+    "image_url": "https://triple7casino.ca/uploads/xxx.jpg",
+    "start_date": "2024-10-01",
+    "end_date": "2024-10-31",
+    "status": "active"
+  },
+  {
+    "id": 2,
+    "title": "Titre Promo 2",
+    ...
+  }
+]
+
+PLUS section _debug à la fin:
+"_debug": {
+  "total_found": 2,
+  "table_columns": [...],
+  "query": "SELECT * FROM...",
+  "has_isActive": true
+}
+
+═══════════════════════════════════════════════════════════════
+
+🔍 ÉTAPE 4: VÉRIFIER LE SITE AVEC CONSOLE
+─────────────────────────────────────────────────────────────
+
+1. Ouvrez votre site: https://triple7casino.ca
+2. F12 → Onglet Console
+3. Rafraîchissez (CTRL+F5)
+
+Vous verrez maintenant des logs TRÈS détaillés:
+
+🔍 Essai URL: /uploads/promotions.json
+❌ Erreur sur /uploads/promotions.json : ...
+
+🔍 Essai URL: /api/promotions.php?flat=1&lang=fr
+📡 Réponse status: 200 OK
+📦 Données brutes reçues: [...]
+✅ Promotions normalisées: 2 items
+  [0] Titre Promo 1
+      Image: https://triple7casino.ca/uploads/xxx.jpg
+      Status: active
+  [1] Titre Promo 2
+      Image: https://triple7casino.ca/uploads/yyy.jpg
+      Status: active
+
+🎰 Promotions reçues: [...]
+📊 Nombre de promotions: 2
+🔄 renderPromotions appelé avec: 2 promotions
+📍 Index actuel: 0
+📦 Promotion affichée: {...}
+🖼️ Image URL: https://triple7casino.ca/uploads/xxx.jpg
+🎯 Afficher flèches? true
+
+═══════════════════════════════════════════════════════════════
+
+✅ SI TOUT FONCTIONNE:
+─────────────────────────────────────────────────────────────
+
+Vous devriez voir:
+✅ Titre "PROMOTIONS"
+✅ Badge "En cours" centré
+✅ Image correcte uploadée via admin
+✅ Flèches gauche/droite visibles
+✅ 2 points de pagination
+✅ Navigation entre les 2 promos fonctionne
+✅ Clic image = Lightbox
+✅ Bouton contact scroll
+
+═══════════════════════════════════════════════════════════════
+
+❌ SI ÇA NE FONCTIONNE TOUJOURS PAS:
+─────────────────────────────────────────────────────────────
+
+Envoyez-moi 3 choses:
+
+1. Résultat de: /api/test_db.php
+2. Résultat de: /api/promotions.php?flat=1
+3. Screenshot ou copie de la console F12
+
+Cela me permettra de voir EXACTEMENT ce qui se passe!
+
+═══════════════════════════════════════════════════════════════
+
+🔧 DIFFÉRENCES v5.3:
+─────────────────────────────────────────────────────────────
+
+API promotions.php:
+✅ Détection automatique des colonnes de la table
+✅ Fonctionne même si isActive n'existe pas
+✅ Gestion des URLs images (/uploads/, absolues, etc.)
+✅ Mode debug activé pour voir les problèmes
+✅ Meilleure gestion d'erreurs
+
+Widget JavaScript:
+✅ Logs détaillés à chaque étape
+✅ Affiche les URLs essayées
+✅ Montre les données reçues
+✅ Debug de chaque promotion
+✅ Cache désactivé pour éviter anciens résultats
+
+═══════════════════════════════════════════════════════════════
+
+📞 APRÈS AVOIR TESTÉ:
+─────────────────────────────────────────────────────────────
+
+Si ça marche → Super! Vous pouvez désactiver le debug:
+  Dans promotions.php ligne 11: $DEBUG = false;
+
+Si ça ne marche pas → Envoyez-moi les 3 infos ci-dessus!
+
+═══════════════════════════════════════════════════════════════
+
+Version: 5.3 DIAGNOSTIC
+Date: 21 Octobre 2024
+Focus: Connexion BD + Debug complet
