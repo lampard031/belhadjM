@@ -138,11 +138,12 @@ try {
     ];
   }
   
-  // Format de réponse
+  // Format de réponse - FORCER en tableau indexé
   if (isset($_GET['flat']) && $_GET['flat'] == '1') {
-    $response = $promotions;
+    // S'assurer que c'est un vrai tableau indexé, pas un objet
+    $response = array_values($promotions);
   } else {
-    $response = ['promotions' => $promotions];
+    $response = ['promotions' => array_values($promotions)];
   }
   
   // Ajouter debug si activé
@@ -150,7 +151,8 @@ try {
     $response['_debug'] = $debug;
   }
   
-  echo json_encode($response, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+  // JSON_FORCE_OBJECT désactivé pour garder le format tableau
+  echo json_encode($response, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
   
 } catch (Exception $e) {
   http_response_code(500);
