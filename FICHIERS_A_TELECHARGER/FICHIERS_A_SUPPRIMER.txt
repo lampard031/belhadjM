@@ -1,0 +1,66 @@
+═══════════════════════════════════════════════════════════════
+  🗑️ FICHIERS À SUPPRIMER - Casino TRIPLE 7
+═══════════════════════════════════════════════════════════════
+
+Ces fichiers causent des CONFLITS et INTERFÉRENCES.
+Ils doivent être SUPPRIMÉS de votre serveur Hostinger.
+
+─────────────────────────────────────────────────────────────
+
+📂 DANS: /public_html/static/js/
+
+  ❌ promotions_section.js
+     → Conflit avec promotions_widget.js
+     → Crée une deuxième section promotions
+  
+  ❌ promotions_relocate.js
+     → Interfère avec le positionnement automatique
+     → Essaie de déplacer le widget en boucle
+  
+  ❌ main.ec2ca31c.js
+     → Ancien bundle React inutilisé
+     → Occupe 450KB d'espace
+
+─────────────────────────────────────────────────────────────
+
+📂 DANS: /public_html/static/css/
+
+  ❌ promotions.css (OPTIONNEL)
+     → Le CSS est déjà injecté dans promotions_widget.js
+     → Peut causer des conflits de styles
+     → Si vous n'êtes pas sûr, laissez-le pour l'instant
+
+─────────────────────────────────────────────────────────────
+
+🔧 COMMENT SUPPRIMER:
+
+1. Connectez-vous à Hostinger
+2. File Manager (Gestionnaire de fichiers)
+3. Naviguez vers chaque dossier
+4. Sélectionnez le fichier
+5. Cliquez "Delete" (Supprimer)
+6. Confirmez
+
+─────────────────────────────────────────────────────────────
+
+⚠️ IMPORTANT:
+
+Faites un BACKUP avant de supprimer!
+(Clic droit → Download sur chaque fichier)
+
+Sauvegardez-les dans un dossier local nommé:
+"backup_triple7_[date]"
+
+Comme ça, si besoin, vous pouvez restaurer.
+
+─────────────────────────────────────────────────────────────
+
+✅ APRÈS SUPPRESSION:
+
+Vous devriez avoir dans /static/js/ seulement:
+✅ api_compat.js
+✅ main.15ea83fd.js
+✅ promotions_widget.js
+✅ swap_premium_images.js
+
+═══════════════════════════════════════════════════════════════
