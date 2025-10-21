@@ -42,7 +42,8 @@ try {
   if(!$table && in_array('promotions',$tables,true)) $table = 'promotions';
   if(!$table) { echo json_encode([]); exit; }
 
-  $res = $db->query("SELECT * FROM `$table` LIMIT 50");
+  // Récupérer seulement les promotions actives, triées par date
+  $res = $db->query("SELECT * FROM `$table` WHERE isActive = 1 ORDER BY start_date DESC LIMIT 50");
   $out = [];
   while($row = $res->fetch_assoc()){
     $out[] = [
