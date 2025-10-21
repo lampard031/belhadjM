@@ -303,41 +303,126 @@
     `;
   }
 
+  // Navigation carousel
+  function navigateCarousel(direction) {
+    if (!promotionsData.length) return;
+    
+    if (direction === 'next') {
+      currentIndex = (currentIndex + 1) % promotionsData.length;
+    } else {
+      currentIndex = (currentIndex - 1 + promotionsData.length) % promotionsData.length;
+    }
+    renderPromotions(promotionsData);
+  }
+
+  // Aller à une slide spécifique
+  function goToSlide(index) {
+    currentIndex = index;
+    renderPromotions(promotionsData);
+  }
+
+  // Ouvrir lightbox
+  function openLightbox(imgSrc) {
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox active';
+    lightbox.innerHTML = `
+      <span class="lightbox-close">×</span>
+      <img class="lightbox-img" src="${imgSrc}" alt="Promotion">
+    `;
+    widget.appendChild(lightbox);
+    
+    lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
+      lightbox.remove();
+    });
+    
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) lightbox.remove();
+    });
+  }
+
+  // Scroll vers contact
+  function scrollToContact() {
+    const contactSection = document.querySelector('#contact, section[id*="contact"], [data-section="contact"]');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // Fallback: scroll vers le bas si section pas trouvée
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  }
+
   function renderPromotions(promos) {
     if (!promos || !promos.length) {
       renderError('Aucune promotion active pour le moment.');
       return;
     }
-    const p = promos[0]; // on affiche la première
+    
+    promotionsData = promos;
+    const p = promos[currentIndex];
     const title = pick(p, ['title_fr','title','name']) || 'Promotion';
     const desc  = pick(p, ['description_fr','description','desc','text']);
     const statusKey = normalizeStatus(p.status || p.state || p.isActive || p.active);
     const statusTxt = statusKey === 'upcoming' ? 'À venir' : 'En cours';
     const dates = (p.start_date && p.end_date) ? `${p.start_date} — ${p.end_date}` : '';
     const img   = pick(p, ['image_url','image','photo']);
-    const cta   = pick(p, ['cta_text_fr','cta_text']) || 'Participer maintenant';
+
+    // Générer les dots de pagination
+    const dots = promos.map((_, idx) => 
+      `<span class="carousel-dot ${idx === currentIndex ? 'active' : ''}" data-index="${idx}"></span>`
+    ).join('');
 
     widget.innerHTML = html`
       <section class="promo-section">
-        <div class="promo-frame">
-          <div class="promo-grid">
-            <div>
-              ${img ? `<img class="promo-img" src="${img}" alt="">` : ''}
-            </div>
-            <div>
-              <div class="promo-badges">
-                <span class="promo-badge">Promotions & Concours</span>
-                <span class="promo-status ${statusKey==='upcoming' ? 'upcoming':''}">${statusTxt}</span>
+        <h2 class="section-title">Promotions</h2>
+        <div class="promo-status-top">
+          <span class="promo-status ${statusKey==='upcoming' ? 'upcoming':''}">${statusTxt}</span>
+        </div>
+        
+        <div class="carousel-container">
+          ${promos.length > 1 ? '<button class="carousel-arrow prev" data-dir="prev">‹</button>' : ''}
+          
+          <div class="promo-frame">
+            <div class="promo-grid">
+              <div>
+                ${img ? `<img class="promo-img" src="${img}" alt="${title}" data-lightbox="${img}">` : ''}
               </div>
-              <h2 class="promo-title">${title}</h2>
-              ${dates ? `<div class="promo-dates">${dates}</div>` : ''}
-              ${desc ? `<p class="promo-desc">${desc}</p>` : ''}
-              <button class="promo-cta">${cta}</button>
+              <div>
+                <h3 class="promo-title">${title}</h3>
+                ${dates ? `<div class="promo-dates">📅 ${dates}</div>` : ''}
+                ${desc ? `<p class="promo-desc">${desc}</p>` : ''}
+                <a href="#contact" class="promo-cta" data-scroll-contact>Nous contacter</a>
+              </div>
             </div>
           </div>
+          
+          ${promos.length > 1 ? '<button class="carousel-arrow next" data-dir="next">›</button>' : ''}
         </div>
+        
+        ${promos.length > 1 ? `<div class="carousel-dots">${dots}</div>` : ''}
       </section>
     `;
+    
+    // Event listeners
+    widget.querySelectorAll('.carousel-arrow').forEach(arrow => {
+      arrow.addEventListener('click', () => navigateCarousel(arrow.dataset.dir));
+    });
+    
+    widget.querySelectorAll('.carousel-dot').forEach(dot => {
+      dot.addEventListener('click', () => goToSlide(parseInt(dot.dataset.index)));
+    });
+    
+    const promoImg = widget.querySelector('.promo-img');
+    if (promoImg) {
+      promoImg.addEventListener('click', () => openLightbox(promoImg.dataset.lightbox));
+    }
+    
+    const ctaBtn = widget.querySelector('[data-scroll-contact]');
+    if (ctaBtn) {
+      ctaBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToContact();
+      });
+    }
   }
 
   // Placement après le Hero (fallback après #root)
