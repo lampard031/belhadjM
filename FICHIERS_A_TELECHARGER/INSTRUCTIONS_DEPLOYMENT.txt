@@ -1,0 +1,103 @@
+═══════════════════════════════════════════════════════════════
+  INSTRUCTIONS DE DÉPLOIEMENT - Casino TRIPLE 7
+  Modifications Section Promotions v5.0
+═══════════════════════════════════════════════════════════════
+
+📁 FICHIER À TÉLÉCHARGER:
+─────────────────────────────────────────────────────────────
+✅ promotions_widget.js  (15KB)
+
+
+📤 OÙ UPLOADER SUR HOSTINGER:
+─────────────────────────────────────────────────────────────
+Chemin exact sur votre serveur:
+
+    /public_html/static/js/promotions_widget.js
+
+⚠️  IMPORTANT: Remplacez le fichier existant!
+
+
+🔧 ÉTAPES D'INSTALLATION:
+─────────────────────────────────────────────────────────────
+
+1. Connectez-vous à votre panneau Hostinger
+2. Allez dans "Gestionnaire de fichiers"
+3. Naviguez vers: public_html → static → js
+4. Trouvez le fichier: promotions_widget.js
+5. SUPPRIMEZ l'ancien fichier OU renommez-le en:
+   promotions_widget.js.backup
+6. Uploadez le nouveau fichier promotions_widget.js
+7. Vérifiez que le fichier est bien dans:
+   /public_html/static/js/promotions_widget.js
+
+
+🧪 TESTER LES MODIFICATIONS:
+─────────────────────────────────────────────────────────────
+
+1. Ouvrez votre site: https://triple7casino.ca
+2. Appuyez sur CTRL + F5 (vider le cache)
+3. Vérifiez que vous voyez:
+   ✅ Titre "PROMOTIONS" en haut de la section
+   ✅ Badge "En cours" centré
+   ✅ Flèches gauche/droite (si plusieurs promos)
+   ✅ Points de navigation en bas
+   ✅ Clic sur image = Lightbox plein écran
+   ✅ Bouton "Nous contacter" scroll vers contact
+
+
+🎨 NOUVELLES FONCTIONNALITÉS:
+─────────────────────────────────────────────────────────────
+
+✅ Titre "PROMOTIONS" ajouté à la section
+✅ Carousel avec flèches de navigation
+✅ Lightbox pour voir images en grand
+✅ Bouton "Nous contacter" cliquable (scroll auto)
+✅ Badge statut centré en haut
+✅ Design responsive mobile optimisé
+✅ Indicateurs de pagination (dots)
+✅ Animations hover sur tous les éléments
+
+
+🚨 EN CAS DE PROBLÈME:
+─────────────────────────────────────────────────────────────
+
+Si ça ne marche pas:
+1. Vérifiez le chemin du fichier (doit être exact)
+2. Videz le cache: CTRL + SHIFT + DELETE
+3. Vérifiez les permissions du fichier (644 ou 755)
+4. Testez en navigation privée
+5. Si vous avez Cloudflare: videz le cache CDN
+
+
+💾 BACKUP:
+─────────────────────────────────────────────────────────────
+
+AVANT de remplacer, faites une copie de l'ancien fichier!
+Renommez-le en: promotions_widget.js.backup
+
+Ainsi, si besoin, vous pourrez revenir en arrière.
+
+
+📱 RESPONSIVE:
+─────────────────────────────────────────────────────────────
+
+Le nouveau widget s'adapte automatiquement:
+- Desktop: 2 colonnes avec flèches sur les côtés
+- Mobile: 1 colonne centrée avec petites flèches
+- Tablette: Layout adaptatif
+
+
+✅ AUCUNE AUTRE MODIFICATION NÉCESSAIRE:
+─────────────────────────────────────────────────────────────
+
+❌ Pas de changement au HTML
+❌ Pas de changement à la base de données
+❌ Pas de changement aux autres fichiers PHP/CSS
+❌ Pas de changement à l'admin panel
+
+Tout fonctionne automatiquement!
+
+
+═══════════════════════════════════════════════════════════════
+  Besoin d'aide? N'hésitez pas à demander!
+═══════════════════════════════════════════════════════════════
