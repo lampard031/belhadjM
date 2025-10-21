@@ -1,0 +1,77 @@
+═══════════════════════════════════════════════════════════════
+  🚨 URGENT - RESTAURATION SITE
+  Casino TRIPLE 7
+═══════════════════════════════════════════════════════════════
+
+❌ PROBLÈME:
+Le fichier index.php uploadé était incomplet ou corrompu.
+Il manquait le début du fichier (<?php et headers).
+Le site affiche du code PHP au lieu de fonctionner.
+
+═══════════════════════════════════════════════════════════════
+
+✅ SOLUTION IMMÉDIATE:
+─────────────────────────────────────────────────────────────
+
+📥 Téléchargez: index_COMPLET.php
+
+📤 Uploadez dans: /public_html/api/index.php
+
+⚠️ IMPORTANT: 
+- Remplacez complètement l'ancien fichier
+- Vérifiez que le fichier commence bien par <?php
+- Permissions du fichier: 644
+
+═══════════════════════════════════════════════════════════════
+
+🧪 APRÈS UPLOAD - TESTER:
+─────────────────────────────────────────────────────────────
+
+1. Allez sur: https://triple7casino.ca
+   → Le site devrait s'afficher normalement
+
+2. Testez API: https://triple7casino.ca/api/promotions.php?flat=1
+   → Devrait retourner du JSON, PAS du code PHP
+
+3. Console F12 devrait montrer:
+   ✅ Promotions normalisées: 3 items
+   🎯 Afficher flèches? true
+
+═══════════════════════════════════════════════════════════════
+
+✅ CE FICHIER CONTIENT:
+─────────────────────────────────────────────────────────────
+
+✅ Balise <?php au début (CRITIQUE!)
+✅ Tous les headers HTTP corrects
+✅ Section promotions avec array_values()
+✅ Champ status ajouté
+✅ Format JSON tableau correct
+
+═══════════════════════════════════════════════════════════════
+
+💡 POURQUOI L'ERREUR?
+─────────────────────────────────────────────────────────────
+
+Lors de l'upload précédent, le fichier a été corrompu.
+Les premières lignes ont été coupées.
+Sans <?php au début, le serveur affiche le code au lieu 
+de l'exécuter.
+
+═══════════════════════════════════════════════════════════════
+
+📞 APRÈS UPLOAD:
+─────────────────────────────────────────────────────────────
+
+1. Site fonctionne normalement? ✅
+2. Flèches apparaissent? ✅
+3. Navigation entre promos? ✅
+
+Si OUI → Parfait! Tout est réglé!
+Si NON → Envoyez-moi screenshot console F12
+
+═══════════════════════════════════════════════════════════════
+
+Version: 5.6 - Fichier complet et testé
+Date: 21 Octobre 2024
+Urgence: Restauration site cassé
