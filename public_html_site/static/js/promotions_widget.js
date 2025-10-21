@@ -465,6 +465,10 @@
 
   showLoading();
   fetchFirstWorking()
-    .then(renderPromotions)
+    .then(data => {
+      console.log('🎰 Promotions reçues:', data);
+      console.log('📊 Nombre de promotions:', data.length);
+      renderPromotions(data);
+    })
     .catch(() => renderError('Impossible de charger les promotions.'));
 })();
