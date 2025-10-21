@@ -1,0 +1,21 @@
+═══════════════════════════════════════════════════════════════
+  ❌ FICHIERS CSS À SUPPRIMER ABSOLUMENT
+  Ils créent des conflits avec le widget JavaScript
+═══════════════════════════════════════════════════════════════
+
+📂 /public_html/static/css/
+
+  ❌ promotions.css
+     → Conflits de styles avec le widget JS
+     → Le widget injecte son propre CSS
+
+═══════════════════════════════════════════════════════════════
+
+🔧 APRÈS SUPPRESSION:
+
+Le widget JavaScript utilisera son propre CSS injecté 
+(lignes 28-267 du fichier promotions_widget.js)
+
+Les flèches et le carousel fonctionneront correctement!
+
+═══════════════════════════════════════════════════════════════
