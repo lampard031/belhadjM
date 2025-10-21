@@ -1,6 +1,8 @@
-// /static/js/promotions_widget.js  (v4.1 – fond + cadre visibles)
+// /static/js/promotions_widget.js  (v5.0 – Carousel + Lightbox)
 (function () {
   const WIDGET_ID = 'promotions-widget';
+  let currentIndex = 0;
+  let promotionsData = [];
 
   // Endpoints avec fallback local
   const ENDPOINTS = [
