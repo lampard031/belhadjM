@@ -6,11 +6,12 @@
 
   // Endpoints avec fallback local
   const ENDPOINTS = [
-    '/uploads/promotions.json',                 // fallback local
+    '/api/promotions_TEST.php',                 // TEST DIRECT - Force bon format
     '/api/promotions.php?flat=1&lang=fr',
     '/api/promotions.php?lang=fr',
     '/api/promotions.php?flat=1',
-    '/api/promotions.php'
+    '/api/promotions.php',
+    '/uploads/promotions.json'
   ];
 
   // Récupère / crée le conteneur
