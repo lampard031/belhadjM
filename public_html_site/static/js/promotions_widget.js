@@ -24,7 +24,7 @@
   // Style minimal par défaut (au cas où)
   Object.assign(widget.style, { background: 'transparent', color: '#fff', margin: '0', padding: '0' });
 
-  // === Injection d’un petit CSS (cadre + fond section) ===
+  // === Injection CSS (Carousel + Lightbox + Responsive) ===
   if (!document.getElementById('promo-skin')) {
     const s = document.createElement('style');
     s.id = 'promo-skin';
