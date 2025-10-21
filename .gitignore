@@ -77,4 +77,5 @@ agenthub/agents/youtube/db
 .cache/
 
 # Mobile development
-android-sdk/ 
+android-sdk/ public_html_site/hero-desktop.mp4
+public_html.zip

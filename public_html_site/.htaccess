@@ -1,0 +1,36 @@
+# Active mod_rewrite
+RewriteEngine On
+RewriteBase /
+
+# --- API propres ---
+# /api/events -> /api/events.php
+RewriteRule ^api/events/?$ api/events.php [L,QSA]
+
+# tu peux ajouter d'autres endpoints plus tard :
+# RewriteRule ^api/winners/?$ api/winners.php [L,QSA]
+# RewriteRule ^api/promotions/?$ api/promotions.php [L,QSA]
+
+# --- Forcer HTTPS + non-www ---
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{HTTP_HOST} ^www\.triple7casino\.ca$ [NC]
+RewriteRule ^(.*)$ https://triple7casino.ca/$1 [L,R=301]
+
+# --- SPA React : tout le reste vers index.html (sauf fichiers/dossiers existants + /api/*) ---
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteCond %{REQUEST_URI} !^/uploads/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+RewriteEngine On
+
+# --- API routing ---
+# /api  -> /api/index.php
+RewriteRule ^api/?$ api/index.php [L,QSA]
+# /api/xxx -> /api/xxx.php
+RewriteRule ^api/([^/]+)/?$ api/$1.php [L,QSA]
+# --- fin API routing ---
+
+

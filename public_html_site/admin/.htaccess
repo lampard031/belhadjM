@@ -1,0 +1,14 @@
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Désindexation robots
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow, noarchive"
+</IfModule>
+
+# Interdit l’accès direct à .php autres que login.php et index.php si pas de session
+<FilesMatch "^(config\.php)$">
+  Require all denied
+</FilesMatch>
