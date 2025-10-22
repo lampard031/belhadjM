@@ -13,6 +13,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^winners$ index.php [QSA,L]
 RewriteRule ^promotions$ index.php [QSA,L]
 RewriteRule ^events$ index.php [QSA,L]
-
-# /api/health -> index.php
 RewriteRule ^health$ index.php [QSA,L]
