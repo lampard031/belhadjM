@@ -1,0 +1,16 @@
+# /public_html/api/.htaccess
+Options -Indexes -MultiViews
+
+# Toujours passer par index.php
+DirectoryIndex index.php
+RewriteEngine On
+
+# Ne touche pas aux fichiers/dossiers physiques
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Routes API vers index.php
+RewriteRule ^winners$ index.php [QSA,L]
+RewriteRule ^promotions$ index.php [QSA,L]
+RewriteRule ^events$ index.php [QSA,L]
+RewriteRule ^health$ index.php [QSA,L]
