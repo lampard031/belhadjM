@@ -84,3 +84,7 @@ public_html_site/hero-desktop.mp4
 # Environment files
 *.env
 *.env.*
+-e 
+# Environment files
+*.env
+*.env.*
