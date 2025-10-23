@@ -80,3 +80,7 @@ agenthub/agents/youtube/db
 android-sdk/ public_html_site/hero-desktop.mp4
 public_html.zip
 public_html_site/hero-desktop.mp4
+-e 
+# Environment files
+*.env
+*.env.*
